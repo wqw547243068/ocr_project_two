@@ -9,6 +9,8 @@ export default function FileUpload() {
   const [step, setStep] = useState(1)
   const [visible, setVisible] = useState(false)
   const [value, setValue] = useState(0)
+  const [result, setResult] = useState('')
+  const [rawfile, setRawfile] = useState('')
   const navigate = useNavigate()
   const doClick = () => {
     const dom = document.querySelector('.upload-tpl') as any;
@@ -53,11 +55,14 @@ export default function FileUpload() {
     {step === 1 && <div className='upload-area'>
       <div><img style={{cursor: 'pointer'}} src="/upload.png" alt="upload" onClick={() => doClick()} /></div>
       <UploadTpl
-        cback={(status: string) => {
+        cback={(status: string, res:any) => {
           // setUploading(true)
           // setStep(2)
           if (status === 'end') {
             // setUploading(false)
+            // console.log(res.status, 123)
+            setResult(res.data.content.join('\n'))
+            setRawfile(res.req.file_name)
           }
         }}
       />
@@ -76,9 +81,11 @@ export default function FileUpload() {
       <div style={{display: 'flex', gap: 20}}>
         <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center'}}>
           原始文件/预览图
+          {rawfile}
         </div>
         <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center', color: '#165dff'}}>
           文字识别结果
+          {result}
         </div>
       </div>
       <div style={{display: 'flex', justifyContent: 'end', marginTop: 10}}>

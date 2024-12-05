@@ -51,14 +51,14 @@ function UploadTpl(props: any) {
             return onError(xhr.responseText as any)
           }
           const res = JSON.parse(xhr.responseText)
-
+          // console.log(333, xhr)
           if (res.code === 0) {
             onSuccess(xhr.responseText, xhr)
             Message.success(res.msg || '上传成功')
           } else {
             Message.success(res.errmsg || '上传成功')
           }
-          props.cback('end')
+          props.cback('end', res)
         }
 
         const formData = new FormData()
