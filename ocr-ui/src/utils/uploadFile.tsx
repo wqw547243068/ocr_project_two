@@ -65,10 +65,10 @@ function UploadTpl(props: any) {
         formData.append('uploadFile', file)
         if (import.meta.env.DEV) {
           //xhr.open('post', '/oapi/internal/dns-brute', true)
-          xhr.open('post', '127.0.0.1:5000/api_ocr', true)
+          xhr.open('post', '/api/api_ocr', true)
         } else {
           //xhr.open('post', '/oapi/internal/dns-brute', true)
-          xhr.open('post', '127.0.0.1:5000/api_ocr', true)
+          xhr.open('post', '/api/api_ocr', true)
         }
 
         xhr.send(formData)
