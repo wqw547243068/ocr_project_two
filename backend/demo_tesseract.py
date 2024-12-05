@@ -21,8 +21,8 @@ def get_image(url):
 file_name = "E:\ocr\data\联合国宣言\中英.jpg"
 file_name = "E:\ocr\data\联合国宣言\俄语.jpg"
 file_name = "E:\ocr\data\联合国宣言\德语.jpg"
-file_name = "E:\ocr\data\hand\\2.jpg"
-file_name = "E:\ocr\data\hand\\4.png"
+# file_name = "E:\ocr\data\hand\\2.jpg"
+# file_name = "E:\ocr\data\hand\\4.png"
 # file_name = "e:\ocr\data\OCR_e2e_img\general_ocr_001.png"
 #img = get_image('https://github.com/jalammar/jalammar.github.io/raw/master/notebooks/cv/label.png')
 #img = get_image('e:\\code_new\\ocr\\data\\a.png')
@@ -39,7 +39,7 @@ else:
 print("识别结果: ", res)
 
 
-sys.exit(1)
+# sys.exit(1)
 
 print('='*30)
 

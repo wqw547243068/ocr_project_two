@@ -14,8 +14,8 @@ test_file = f"{demo_dir}\a.png" # 中文
 test_file = f"{demo_dir}\OCR_e2e_img\general_ocr_001.png"
 
 # 语种模型加载，只下载、加载一次，到内存里
-# reader = easyocr.Reader(['ch_sim','en']) # this needs to run only once to load the model into memory
-reader = easyocr.Reader(['en', 'de', 'fr', 'ja', 'ru'])
+reader = easyocr.Reader(['ch_sim','en']) # this needs to run only once to load the model into memory
+# reader = easyocr.Reader(['en', 'de', 'fr', 'ja', 'ru'])
 # reader = easyocr.Reader(['ch_sim','en'], gpu=False)
 
 start_time = time.time()
