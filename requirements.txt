@@ -1,0 +1,8 @@
+# ∫Û∂À“¿¿µ
+flask
+python-docx
+pdfplumber
+pytesseract
+pillow
+opencv-python
+# «∞∂À“¿¿µ

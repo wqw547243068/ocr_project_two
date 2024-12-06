@@ -1,6 +1,17 @@
-# coding:utf-8
+# !/usr/bin/env python
+# -*- coding:utf8 -*- 
+
+# **************************************************************************
+# * Copyright (c) 2024. All Rights Reserved
+# **************************************************************************
+# * @function OCR Demo, easyOCR 实现, windows 环境
+# * @author wqw547243068@163.com
+# * @date 2024/12/05 17:00
+# **************************************************************************
+
 # pip install easyocr
 
+import logging
 import time
 import easyocr
 from PIL import Image, ImageDraw, ImageFont
