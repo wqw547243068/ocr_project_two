@@ -1,7 +1,7 @@
 import os
 import json
 import logging
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_file
 
 app = Flask(__name__)
 
@@ -20,10 +20,14 @@ from docx import Document
 import pdfplumber
 import pytesseract
 
+cur_dir = os.path.dirname(__file__)
+cache_dir = os.path.join(cur_dir, os.pardir, 'cache_file')
+# ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = cache_dir
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 设置最大文件上传大小为 100MB
 
-cache_dir = 'tmp'
 if not os.path.exists(cache_dir):
-    os.mkdir(cache_dir)
+    os.mkdirs(cache_dir)
 
 def parseDoc(file_name):
     """
@@ -54,8 +58,10 @@ def parsePDF(file_name):
     try:
         pdf =  pdfplumber.open(file_name)
         content_info['num'] = len(pdf.pages)
-        for page in pdf.pages:
-            content_info['content'].append(page.extract_text())
+        # for page in pdf.pages:
+        #     content_info['content'].append(page.extract_text())
+        for i, page in enumerate(pdf.pages):
+            content_info['content'].extend([f'==[第{i}页]==', page.extract_text()])
         content_info['status'] = 1
         content_info['msg'] = 'pdf解析完毕'
     except Exception as err:
@@ -74,6 +80,7 @@ def parseOCR(file_name):
     try:
         out = pytesseract.image_to_string(file_name, lang='chi_sim+eng+deu+fra+rus+jpn')
         out = out.split('\n')
+        # out = [ i.replace(' ','') for i in out.split('\n')]
         content_info['num'] = len(out)
         content_info['content'] = out
         content_info['status'] = 1
@@ -93,9 +100,24 @@ def home():
     return 'OCR接口主页!'
     # return render_template('index.html') 
 
+
+@app.route("/download")
+def download_file():
+    """
+    下载 src_file 目录下的文件
+    eg: 下载当前目录下123.tar 文件 http://localhost:5000/download?fileId=123.tar
+    """
+    file_name = request.args.get('fileId')
+    file_path = os.path.join(cache_dir, file_name)
+    if os.path.isfile(file_path):
+        return send_file(file_path, as_attachment=True)
+    else:
+        return "The downloaded file does not exist"
+
 @app.route('/api_ocr', methods = ["GET", "POST"])
 def post_data():
     # 获取客户端的文件信息
+    remote_file = '-'
     # ======= 统一 ======
     if request.method == 'POST':
         # data = request.json
@@ -106,16 +128,18 @@ def post_data():
         # 文件写入磁盘
         cur_file = os.path.join(cache_dir, file.filename)
         file.save(cur_file)
+        remote_file = f'http://localhost:5000/download?fileId={file.filename}'
     elif request.method == 'GET':
         data = request.args
         cur_file = data['uploadFile']
+        remote_file = cur_file
     
     logger.info(f"请求参数: {data=}, {cur_file=}")
     res = {"status":0, 
             "msg":'-', 
             "data":{
                 "content":[], # 识别内容
-                "merge_image":"-", # 融合图
+                "merge_image": remote_file, # 融合图
                 "scores":[], # 分值
             }, 
             'req':{} # 请求信息
@@ -127,7 +151,7 @@ def post_data():
         logger.error(res['msg'])
         return json.dumps(res, ensure_ascii=False)
 
-    res['req']['file_name'] = cur_file
+    res['req']['file_name'] = os.path.basename(cur_file)
     if cur_file.find('.') != -1:
         cur_ext = cur_file.split('.')[-1]
     else:
@@ -141,6 +165,7 @@ def post_data():
         res['msg'] = 'word文件'
         out = parseDoc(cur_file)
         res['status'] = out['status']
+        res['data']['merge_image'] = f'http://localhost:5000/download?fileId=word.jpg'
         if out['msg'] != '-':
             res['msg'] = out['msg']
         if out['status'] > 0:
@@ -152,6 +177,7 @@ def post_data():
         res['msg'] = 'pdf文件'
         out = parsePDF(cur_file)
         res['status'] = out['status']
+        res['data']['merge_image'] = f'http://localhost:5000/download?fileId=pdf.jpg'
         if out['msg'] != '-':
             res['msg'] = out['msg']
         if out['status'] > 0:
@@ -170,7 +196,7 @@ def post_data():
         if out['status'] > 0:
             res['data']['content'] = out['content']
             # 生成合成图
-            res['data']['merge_image'] = '-'
+            # res['data']['merge_image'] = cur_file
             pass
         else:
             logger.error(f"图片解析失败 {cur_file=} -> {out=}...")

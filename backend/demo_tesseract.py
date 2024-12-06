@@ -19,8 +19,10 @@ def get_image(url):
     return img
 
 file_name = "E:\ocr\data\联合国宣言\中英.jpg"
-file_name = "E:\ocr\data\联合国宣言\俄语.jpg"
+# file_name = "E:\ocr\data\联合国宣言\俄语.jpg"
 file_name = "E:\ocr\data\联合国宣言\德语.jpg"
+file_name = "E:\ocr\data\联合国宣言\日语.jpg"
+file_name = "E:\ocr\data\联合国宣言\法语.jpg"
 # file_name = "E:\ocr\data\hand\\2.jpg"
 # file_name = "E:\ocr\data\hand\\4.png"
 # file_name = "e:\ocr\data\OCR_e2e_img\general_ocr_001.png"
@@ -34,8 +36,10 @@ if file_name.find('hand') != -1:
     print('手写体')
     res = pytesseract.image_to_string(img, lang='chi_sim') # 中文
 else:
-    res = pytesseract.image_to_string(img, lang='chi_sim+eng') # 中英
-# res = pytesseract.image_to_string(img, lang='chi_sim+eng+deu+fra+rus+jpn')
+    # res = pytesseract.image_to_string(img, lang='chi_sim+eng') # 中英
+    # res = pytesseract.image_to_string(img, lang='chi_sim+eng+deu+fra+rus+jpn')
+    res = pytesseract.image_to_string(img, lang='fra')
+
 print("识别结果: ", res)
 
 

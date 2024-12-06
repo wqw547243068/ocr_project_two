@@ -72,19 +72,19 @@ export default function FileUpload(props: any) {
       <div><img style={{cursor: 'pointer'}} src="/upload.png" alt="upload" onClick={() => doClick()} /></div>
       <UploadTpl
         cback={(status: string, res: any) => {
-          if (status === 'end') {
+          if (status === 'end') { // 上传成功
             setStep(3)
-            if (res.status > 0) {
+            if (res.status > 0) { // ocr成功
               setResult(res.data.content.join('\n'));
               setRawfile(res.req.file_name);
               if (res.data.merge_image) {
                 setImageSrc(res.data.merge_image)
               }
-            } else {
+            } else { // ocr失败
               setResult(res.msg || '识别失败，请检查您的文件后重新上传!');
               setRawfile(res.req.file_name || '原始文件/预览图');
             }
-          } else if (status === 'error'){
+          } else if (status === 'error'){ // 上传失败
             setStep(3)
             setResult('识别失败，请检查您的文件后重新上传!');
             setRawfile('原始文件/预览图');
@@ -108,8 +108,8 @@ export default function FileUpload(props: any) {
           {rawfile}
           {imageSrc &&  <div style={{height: 500, width: '100%', overflow: 'scroll'}}><img src={imageSrc} ></img></div>}
         </div>
-        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500,  color: '#165dff', overflowY: 'scroll'}}>
-          {result}
+        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500,  fontSize: '15px', color: '#21618c', overflowY: 'scroll', textAlign:'left'}}>
+          <pre>{result}</pre>
         </div>
       </div>
       <div style={{display: 'flex', justifyContent: 'end', marginTop: 10}}>
