@@ -1,7 +1,7 @@
 import os
 import json
 import logging
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -91,6 +91,7 @@ def home():
     # app.logger.info('message info is %s', message, exc_info=1)。
     #app.logger.exception('%s', e) # 异常信息
     return 'OCR接口主页!'
+    # return render_template('index.html') 
 
 @app.route('/api_ocr', methods = ["GET", "POST"])
 def post_data():

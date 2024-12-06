@@ -47,11 +47,12 @@ function UploadTpl(props: any) {
 
         xhr.onload = function onload() {
           if (xhr.status < 200 || xhr.status >= 300) {
-            Message.success(xhr.responseText || '上传成功')
+            Message.error('解析失败')
+            props.cback('error')
             return onError(xhr.responseText as any)
           }
           const res = JSON.parse(xhr.responseText)
-          // console.log(333, xhr)
+
           if (res.code === 0) {
             onSuccess(xhr.responseText, xhr)
             Message.success(res.msg || '上传成功')
@@ -64,10 +65,8 @@ function UploadTpl(props: any) {
         const formData = new FormData()
         formData.append('uploadFile', file)
         if (import.meta.env.DEV) {
-          //xhr.open('post', '/oapi/internal/dns-brute', true)
           xhr.open('post', '/api/api_ocr', true)
         } else {
-          //xhr.open('post', '/oapi/internal/dns-brute', true)
           xhr.open('post', '/api/api_ocr', true)
         }
 

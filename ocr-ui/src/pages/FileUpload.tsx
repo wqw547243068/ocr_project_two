@@ -1,42 +1,58 @@
 import { Button, Message, Modal, Radio, Steps } from '@arco-design/web-react';
 import UploadTpl from '../utils/uploadFile';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 const RadioGroup = Radio.Group
 const Step = Steps.Step;
 
-export default function FileUpload() {
+export default function FileUpload(props: any) {
   const [step, setStep] = useState(1)
   const [visible, setVisible] = useState(false)
   const [value, setValue] = useState(0)
+  const [imageSrc, setImageSrc] = useState('')
+  const [tips, setTips] = useState<any>()
   const [result, setResult] = useState('')
-  const [rawfile, setRawfile] = useState('')
-  const navigate = useNavigate()
+  const [rawfile, setRawfile] = useState('原始文件/预览图')
+  const loc = useLocation()
   const doClick = () => {
     const dom = document.querySelector('.upload-tpl') as any;
     dom.querySelector('input[type="file"]').click()
-    setTimeout(() => {
-      setStep(2)
-    }, 3000)
-  }
-
-  const goBack = () => {
-    navigate('/')
   }
 
   useEffect(() => {
-    if (step === 2) {
-      setTimeout(() => {
-        setStep(3)
-      }, 3000)
+    if (loc.pathname === '/revert') {
+      setTips(<div><p>支持上传pdf、doc、docx、html格式</p><p>支持识别并修正错误拆分的段落合并、未正确分段的部分拆分</p></div>)
+    } else if (loc.pathname === '/ocr') {
+      setTips(<div>
+      <p>支持上传doc、docx、pdf、png、jpg、jpeg格式</p>
+      <p>支持识别中文、英文、日语、法语、德语</p>
+      <p>支持印刷体、手写体</p>
+      </div>)
+    } else if (loc.pathname === '/excel') {
+      setTips(<div>
+        <p>支持上传xls、xlsx格式</p>
+        <p>支持识别中文、英文及多语种混杂</p>
+        <p>支持印刷体、手写体</p>
+        </div>)
+    } else if (loc.pathname === '/math') {
+      setTips(<div>
+        <p>支持上传doc、docx、pdf、png、jpg、jpeg格式</p>
+        <p>支持识别行间、行内公式</p>
+        </div>)
+    } else if (loc.pathname === '/img') {
+      setTips('支持上传doc、docx、pdf、png、jpg、jpeg格式')
+    } else if (loc.pathname === '/word') {
+      setTips('支持识别正文、参考文献、数学公式、目录、页眉、页脚、插图说明、表格及其题注')
+    } else if (loc.pathname === '/slice') {
+      setTips(<div>支持上传doc、docx格式
+        <p>支持按照目录进行章节切分</p></div>)
+    } else if (loc.pathname === '/standard') {
+      setTips(<p>支持上传doc、docx格式</p>)
     }
-  }, [step])
+  }, [loc.pathname])
 
   return <div style={{textAlign: 'center'}}>
-    <div className='go-back' style={{textAlign: 'left'}} onClick={() => goBack()}>
-      <img style={{cursor: 'pointer', width: 16}} src="/back.png" alt="upload" onClick={() => doClick()} /><span style={{cursor: 'pointer'}}>返回</span>
-    </div>
-    <h1>OCR识别</h1>
+    <h1>{props.title}</h1>
     <h2>高精度识别</h2>
     <div className='step' style={{marginBottom: 16, height: 60,cursor: 'pointer' }}>
       <Steps current={step} onChange={(step) => {setStep(step)}} style={{  margin: '0 auto', maxWidth: 780, }}>
@@ -52,25 +68,34 @@ export default function FileUpload() {
       uploadAjax()
     }} icon={<IconUpload />}>点击上传</Button> */}
 
-    {step === 1 && <div className='upload-area'>
+    {step === 1 && <div className='upload-area' style={{margin: '30px 0'}}>
       <div><img style={{cursor: 'pointer'}} src="/upload.png" alt="upload" onClick={() => doClick()} /></div>
       <UploadTpl
-        cback={(status: string, res:any) => {
-          // setUploading(true)
-          // setStep(2)
+        cback={(status: string, res: any) => {
           if (status === 'end') {
-            // setUploading(false)
-            // console.log(res.status, 123)
-            setResult(res.data.content.join('\n'))
-            setRawfile(res.req.file_name)
+            setStep(3)
+            if (res.status > 0) {
+              setResult(res.data.content.join('\n'));
+              setRawfile(res.req.file_name);
+              if (res.data.merge_image) {
+                setImageSrc(res.data.merge_image)
+              }
+            } else {
+              setResult(res.msg || '识别失败，请检查您的文件后重新上传!');
+              setRawfile(res.req.file_name || '原始文件/预览图');
+            }
+          } else if (status === 'error'){
+            setStep(3)
+            setResult('识别失败，请检查您的文件后重新上传!');
+            setRawfile('原始文件/预览图');
+          } else {
+            setStep(2)
           }
         }}
       />
 
       <h3>点击此处上传文件/拖拽文件到此处上传</h3>
-      <p>支持上传doc、docx、pdf、png、jpg、jpeg格式</p>
-      <p>支持识别中文、英文、日语、法语、德语</p>
-      <p>支持印刷体、手写体</p>
+      {tips}
     </div>}
     {step === 2 && <div className='upload-area'>
       <div><img style={{cursor: 'pointer'}} src="/pending.png" alt="loading..." /></div>
@@ -79,12 +104,11 @@ export default function FileUpload() {
     </div>}
     {step === 3 && <div>
       <div style={{display: 'flex', gap: 20}}>
-        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center'}}>
-          原始文件/预览图
+        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center', overflow: 'hidden'}}>
           {rawfile}
+          {imageSrc &&  <div style={{height: 500, width: '100%', overflow: 'scroll'}}><img src={imageSrc} ></img></div>}
         </div>
-        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center', color: '#165dff'}}>
-          文字识别结果
+        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500,  color: '#165dff', overflowY: 'scroll'}}>
           {result}
         </div>
       </div>
@@ -99,9 +123,6 @@ export default function FileUpload() {
         <Button type="primary" onClick={() => setVisible(true)}>导出</Button>
       </div>
     </div>}
-    <div style={{padding: 20, textAlign: 'center'}}>
-      我们尊重隐私权。在文件转换/识别后，它们将永远从我们的服务器删除
-    </div>
 
     <Modal
       title="选择格式"
