@@ -83,15 +83,18 @@ def parsePDF(file_name):
     return content_info
 
 
-def parseOCR(file_name):
+def parseOCR(file_name, hand=False):
     """
         图片OCR: tesseract
     """
     content_info = {"num": 0, "content":[], "status":0, "msg":'-'}
     # 读取文档
     try:
-        out = pytesseract.image_to_string(file_name, lang='chi_sim+eng+deu+fra+rus+jpn')
-        out = out.split('\n')
+        if hand:
+            out = pytesseract.image_to_string(file_name, lang='chi_sim', config="--psm 4") # 中文手写体识别
+        else:
+            out = pytesseract.image_to_string(file_name, lang='chi_sim+eng+deu+fra+rus+jpn')
+        out = out.split('\n') if out else []
         # out = [ i.replace(' ','') for i in out.split('\n')]
         content_info['num'] = len(out)
         content_info['content'] = out
@@ -170,7 +173,6 @@ def post_data():
         cur_ext = '-'
     cur_ext = cur_ext.lower()
     res['data']['file_type'] = cur_ext
-    print(f"请求参数: {data=}, {cur_file=}, {cur_ext=}")
     # 格式检测
     if cur_ext in ('doc', 'docx'): # word 文档, 直接解析
         res['data']['content'] = ['word 文档内容']
@@ -202,20 +204,26 @@ def post_data():
         res['data']['content'] = ['ocr 文档内容']
         res['msg'] = '图片文件'
         out = parseOCR(cur_file)
+        if out['num'] == 0:
+            # print(f'二次检测, {out}')
+            logger.warning('启动二次检测, 疑似手写体')
+            # 启动中文手写体识别
+            out = parseOCR(cur_file, hand=True)
         res['status'] = out['status']
         if out['msg'] != '-':
             res['msg'] = out['msg']
         if out['status'] > 0:
-            res['data']['content'] = out['content']
+            res['data']['content'] = out['content'] if out['num'] > 0 else '[未识别到内容]'
             # 生成合成图
             # res['data']['merge_image'] = cur_file
             pass
         else:
+            res['data']['content'] = f'图片解析失败 {cur_file=} -> {out=}...'
             logger.error(f"图片解析失败 {cur_file=} -> {out=}...")
     else:
         res['data']['content'] = ['非预期格式']
         res['msg'] = '其它文件'
-    print(f"[debug] {res}")
+    print(f"请求参数: {data=}, {out=}, {res=}")
     # return res
     # return jsonify(res)
     return json.dumps(res, ensure_ascii=False)
