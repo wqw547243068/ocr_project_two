@@ -28,15 +28,22 @@ app.logger.addHandler(handler)
 #设置日志存储格式，也可自定义日志格式满足不同的业务需求
 logger = logging.getLogger(__name__)
 
+from PIL import Image
 from docx import Document
 import pdfplumber
 import pytesseract
+from paddleocr import PaddleOCR, draw_ocr
+import langid
+
+ocr = PaddleOCR(use_angle_cls=True, lang='ch')
 
 cur_dir = os.path.dirname(__file__)
 cache_dir = os.path.join(cur_dir, os.pardir, 'cache_file')
 # ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = cache_dir
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 设置最大文件上传大小为 100MB
+
+
 
 if not os.path.exists(cache_dir):
     os.mkdirs(cache_dir)
@@ -85,15 +92,17 @@ def parsePDF(file_name):
 
 def parseOCR(file_name, hand=False):
     """
-        图片OCR: tesseract
+        图片OCR: tesseract 
+        特点: 支持多语种, 但手写体、场景图片文字识别效果一般
     """
-    content_info = {"num": 0, "content":[], "status":0, "msg":'-'}
+    content_info = {"num": 0, "content":[], "status":0, "msg":'-', 'merge_image':'-'}
     # 读取文档
     try:
         if hand:
             out = pytesseract.image_to_string(file_name, lang='chi_sim', config="--psm 4") # 中文手写体识别
         else:
             out = pytesseract.image_to_string(file_name, lang='chi_sim+eng+deu+fra+rus+jpn')
+        # 数据示例： g 611 283 631 297 0
         out = out.split('\n') if out else []
         # out = [ i.replace(' ','') for i in out.split('\n')]
         content_info['num'] = len(out)
@@ -105,6 +114,56 @@ def parseOCR(file_name, hand=False):
         content_info['status'] = -1
         content_info['msg'] = err
     return content_info
+
+
+def parseOCRNew(file_name):
+    """
+        图片OCR: PaddleOCR,
+        特点: 识别效果更好，但不支持多语种自动检测
+    """
+    content_info = {"num": 0, "content":[], "status":0, "msg":'-', "merge_image":'-'}
+    # 读取文档
+    try:
+        out = ocr.ocr(file_name, cls=True) # 方向分类器
+        # result = ocr.ocr(file_name, det=False) # 每个item只有文本内容和置信度
+        # result = ocr.ocr(file_name, cls=True, det=False) # 不需要文本框，每个item只有文本内容和置信度
+        # result = ocr.ocr(file_name, cls=True, rec=False) # 不需要文本内容，每个item只有文本框
+        # result = ocr.ocr(file_name, cls=True, rec=False, det=False) #  仅执行方向分类器, 返回分类结果+置信度
+        # 数据格式样例, [边框点坐标, [识别文本, 置信度]]
+        # [[[442.0, 173.0], [1169.0, 173.0], [1169.0, 225.0], [442.0, 225.0]], ['ACKNOWLEDGEMENTS', 0.99283075]]
+
+        # 结果可视化展示
+        result = out[0]
+        image = Image.open(file_name).convert('RGB')
+        boxes, txts, scores = [], [], []
+        for line in result:
+            if not line:
+                continue
+            boxes.append(line[0])
+            txts.append(line[1][0])
+            scores.append(line[1][1])
+
+        im_show = draw_ocr(image, boxes, txts, scores, font_path='/fonts/simfang.ttf')
+        im_show = Image.fromarray(im_show)
+        new_file = os.path.basename(file_name).replace('.', '_merge.')
+        remote_file = f'http://localhost:5000/download?fileId={new_file}'
+        im_show.save(os.path.join(os.path.dirname(file_name), new_file))
+        # im_show.show('result.jpg')
+
+        # out = out.split('\n') if out else []
+        # out = [ i.replace(' ','') for i in out.split('\n')]
+        content_info['num'] = len(out)
+        content_info['content'] = [i[1][0] for i in result]
+        content_info['status'] = 1
+        content_info['msg'] = '图片OCR二次解析完毕'
+        content_info['merge_image'] = remote_file
+    except Exception as err:
+        # logging.error(f"pdf文档解析失败 {file_name} ...")
+        content_info['status'] = -1
+        content_info['msg'] = err
+    return content_info
+
+
 
 
 @app.route('/')
@@ -204,19 +263,26 @@ def post_data():
         res['data']['content'] = ['ocr 文档内容']
         res['msg'] = '图片文件'
         out = parseOCR(cur_file)
-        if out['num'] == 0:
+        # 判断识别出来的文本质量, 语种检测非中文时, 重新生成
+        detect_res = False # 判断是否中文
+        if out['num'] > 0:
+            tmp = langid.classify(','.join(out['content']))
+            if tmp[0] == 'zh':
+                detect_res = True
+        if out['num'] == 0 or not detect_res:
             # print(f'二次检测, {out}')
             logger.warning('启动二次检测, 疑似手写体')
             # 启动中文手写体识别
-            out = parseOCR(cur_file, hand=True)
+            # out = parseOCR(cur_file, hand=True)
+            out = parseOCRNew(cur_file)
         res['status'] = out['status']
         if out['msg'] != '-':
             res['msg'] = out['msg']
         if out['status'] > 0:
             res['data']['content'] = out['content'] if out['num'] > 0 else '[未识别到内容]'
             # 生成合成图
-            # res['data']['merge_image'] = cur_file
-            pass
+            if out['merge_image'] != '-':
+                res['data']['merge_image'] = out['merge_image']
         else:
             res['data']['content'] = f'图片解析失败 {cur_file=} -> {out=}...'
             logger.error(f"图片解析失败 {cur_file=} -> {out=}...")

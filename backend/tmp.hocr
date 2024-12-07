@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <meta name='ocr-system' content='tesseract v5.5.0.20241111' />
+  <meta name='ocr-capabilities' content='ocr_page ocr_carea ocr_par ocr_line ocrx_word ocrp_dir ocrp_lang ocrp_wconf'/>
+ </head>
+ <body>
+  <div class='ocr_page' id='page_1' title='image "..\..\data\a.png"; bbox 0 0 1350 464; ppageno 0; scan_res 70 70'>
+   <div class='ocr_carea' id='block_1_1' title="bbox 19 17 247 45">
+    <p class='ocr_par' id='par_1_1' lang='chi_sim' title="bbox 19 17 247 45">
+     <span class='ocr_line' id='line_1_1' title="bbox 19 17 247 45; baseline 0 0; x_size 37.466667; x_descenders 9.3666668; x_ascenders 9.3666668">
+      <span class='ocrx_word' id='word_1_1' title='bbox 19 17 55 45; x_wconf 92'>图</span>
+      <span class='ocrx_word' id='word_1_2' title='bbox 61 17 90 44; x_wconf 84'>像</span>
+      <span class='ocrx_word' id='word_1_3' title='bbox 89 13 116 59; x_wconf 80'>三</span>
+      <span class='ocrx_word' id='word_1_4' title='bbox 115 13 142 59; x_wconf 91'>维</span>
+      <span class='ocrx_word' id='word_1_5' title='bbox 141 17 174 45; x_wconf 92'>重</span>
+      <span class='ocrx_word' id='word_1_6' title='bbox 173 13 202 59; x_wconf 93'>建</span>
+      <span class='ocrx_word' id='word_1_7' title='bbox 219 17 247 45; x_wconf 96'>算法</span>
+     </span>
+    </p>
+   </div>
+   <div class='ocr_carea' id='block_1_2' title="bbox 28 85 268 105">
+    <p class='ocr_par' id='par_1_2' lang='chi_sim' title="bbox 28 85 268 105">
+     <span class='ocr_line' id='line_1_2' title="bbox 28 85 268 105; baseline -0.004 0; x_size 24.799999; x_descenders 6.1999998; x_ascenders 6.1999998">
+      <span class='ocrx_word' id='word_1_8' title='bbox 28 86 138 105; x_wconf 86'>【2023-3-19】</span>
+      <span class='ocrx_word' id='word_1_9' title='bbox 151 86 167 104; x_wconf 86'>图</span>
+      <span class='ocrx_word' id='word_1_10' title='bbox 177 85 188 104; x_wconf 83'>像</span>
+      <span class='ocrx_word' id='word_1_11' title='bbox 198 85 218 104; x_wconf 92'>三</span>
+      <span class='ocrx_word' id='word_1_12' title='bbox 217 81 237 115; x_wconf 93'>维</span>
+      <span class='ocrx_word' id='word_1_13' title='bbox 224 85 268 104; x_wconf 96'>重建</span>
+     </span>
+    </p>
+   </div>
+   <div class='ocr_separator' id='block_1_3' title="bbox 223 86 226 153"></div>
+   <div class='ocr_separator' id='block_1_4' title="bbox 208 132 386 140"></div>
+   <div class='ocr_separator' id='block_1_5' title="bbox 208 135 210 153"></div>
+   <div class='ocr_carea' id='block_1_6' title="bbox 17 134 586 154">
+    <p class='ocr_par' id='par_1_3' lang='chi_sim' title="bbox 17 134 586 154">
+     <span class='ocr_line' id='line_1_3' title="bbox 17 134 586 154; baseline 0 -1; x_size 23.833334; x_descenders 5.9583335; x_ascenders 5.9583335">
+      <span class='ocrx_word' id='word_1_14' title='bbox 17 130 69 164; x_wconf 95'>截止</span>
+      <span class='ocrx_word' id='word_1_15' title='bbox 68 130 113 164; x_wconf 92'>2022</span>
+      <span class='ocrx_word' id='word_1_16' title='bbox 124 149 128 154; x_wconf 93'>年</span>
+      <span class='ocrx_word' id='word_1_17' title='bbox 134 130 149 164; x_wconf 87'>，</span>
+      <span class='ocrx_word' id='word_1_18' title='bbox 149 143 162 144; x_wconf 90'>一</span>
+      <span class='ocrx_word' id='word_1_19' title='bbox 172 135 188 151; x_wconf 92'>些</span>
+      <span class='ocrx_word' id='word_1_20' title='bbox 187 130 206 164; x_wconf 93'>2D</span>
+      <span class='ocrx_word' id='word_1_21' title='bbox 212 136 224 150; x_wconf 92'>图</span>
+      <span class='ocrx_word' id='word_1_22' title='bbox 236 135 258 153; x_wconf 92'>片</span>
+      <span class='ocrx_word' id='word_1_23' title='bbox 257 130 275 164; x_wconf 91'>三</span>
+      <span class='ocrx_word' id='word_1_24' title='bbox 274 134 287 153; x_wconf 93'>维</span>
+      <span class='ocrx_word' id='word_1_25' title='bbox 295 136 339 154; x_wconf 96'>重建</span>
+      <span class='ocrx_word' id='word_1_26' title='bbox 376 137 378 151; x_wconf 96'>研究</span>
+      <span class='ocrx_word' id='word_1_27' title='bbox 387 135 412 153; x_wconf 96'>工作</span>
+      <span class='ocrx_word' id='word_1_28' title='bbox 416 135 453 154; x_wconf 93'>汇总</span>
+      <span class='ocrx_word' id='word_1_29' title='bbox 455 130 472 164; x_wconf 92'>，</span>
+      <span class='ocrx_word' id='word_1_30' title='bbox 472 134 496 153; x_wconf 92'>英</span>
+      <span class='ocrx_word' id='word_1_31' title='bbox 495 130 517 164; x_wconf 92'>文</span>
+      <span class='ocrx_word' id='word_1_32' title='bbox 516 135 547 154; x_wconf 96'>视频</span>
+      <span class='ocrx_word' id='word_1_33' title='bbox 554 134 586 153; x_wconf 96'>介绍</span>
+     </span>
+    </p>
+   </div>
+   <div class='ocr_separator' id='block_1_7' title="bbox 162 148 387 155"></div>
+   <div class='ocr_separator' id='block_1_8' title="bbox 79 183 255 189"></div>
+   <div class='ocr_separator' id='block_1_9' title="bbox 158 185 160 203"></div>
+   <div class='ocr_separator' id='block_1_10' title="bbox 174 185 176 203"></div>
+   <div class='ocr_separator' id='block_1_11' title="bbox 18 194 257 203"></div>
+   <div class='ocr_separator' id='block_1_12' title="bbox 427 185 428 202"></div>
+   <div class='ocr_separator' id='block_1_13' title="bbox 18 197 257 206"></div>
+   <div class='ocr_carea' id='block_1_14' title="bbox 18 184 872 204">
+    <p class='ocr_par' id='par_1_4' lang='chi_sim' title="bbox 18 184 872 204">
+     <span class='ocr_line' id='line_1_4' title="bbox 18 184 872 204; baseline -0.002 -1; x_size 24.32258; x_descenders 5.3225803; x_ascenders 4">
+      <span class='ocrx_word' id='word_1_34' title='bbox 18 179 64 212; x_wconf 96'>基于</span>
+      <span class='ocrx_word' id='word_1_35' title='bbox 63 179 107 212; x_wconf 95'>深度</span>
+      <span class='ocrx_word' id='word_1_36' title='bbox 106 185 116 193; x_wconf 93'>学</span>
+      <span class='ocrx_word' id='word_1_37' title='bbox 123 187 135 202; x_wconf 93'>习</span>
+      <span class='ocrx_word' id='word_1_38' title='bbox 143 185 156 203; x_wconf 93'>的</span>
+      <span class='ocrx_word' id='word_1_39' title='bbox 164 184 188 203; x_wconf 93'>图</span>
+      <span class='ocrx_word' id='word_1_40' title='bbox 199 193 208 194; x_wconf 92'>像</span>
+      <span class='ocrx_word' id='word_1_41' title='bbox 207 179 225 212; x_wconf 89'>三</span>
+      <span class='ocrx_word' id='word_1_42' title='bbox 224 184 237 203; x_wconf 90'>维</span>
+      <span class='ocrx_word' id='word_1_43' title='bbox 245 184 287 203; x_wconf 96'>重建</span>
+      <span class='ocrx_word' id='word_1_44' title='bbox 286 179 326 212; x_wconf 96'>算法</span>
+      <span class='ocrx_word' id='word_1_45' title='bbox 325 179 347 212; x_wconf 96'>性</span>
+      <span class='ocrx_word' id='word_1_46' title='bbox 346 184 365 203; x_wconf 93'>能</span>
+      <span class='ocrx_word' id='word_1_47' title='bbox 364 179 384 212; x_wconf 90'>较</span>
+      <span class='ocrx_word' id='word_1_48' title='bbox 383 179 404 212; x_wconf 88'>好</span>
+      <span class='ocrx_word' id='word_1_49' title='bbox 403 185 427 203; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_50' title='bbox 428 186 457 204; x_wconf 95'>主要</span>
+      <span class='ocrx_word' id='word_1_51' title='bbox 463 184 476 203; x_wconf 93'>有</span>
+      <span class='ocrx_word' id='word_1_52' title='bbox 480 190 484 201; x_wconf 92'>:</span>
+      <span class='ocrx_word' id='word_1_53' title='bbox 498 186 872 203; x_wconf 85'>MVSNet、PatchMatchNet、NeuralRecon。</span>
+     </span>
+    </p>
+   </div>
+   <div class='ocr_separator' id='block_1_15' title="bbox 650 238 668 241"></div>
+   <div class='ocr_separator' id='block_1_16' title="bbox 161 240 165 257"></div>
+   <div class='ocr_carea' id='block_1_17' title="bbox 48 238 1335 438">
+    <p class='ocr_par' id='par_1_5' lang='chi_sim' title="bbox 48 238 636 294">
+     <span class='ocr_line' id='line_1_5' title="bbox 48 238 636 258; baseline 0.002 -3; x_size 24.8125; x_descenders 5.5; x_ascenders 7.5">
+      <span class='ocrx_word' id='word_1_54' title='bbox 48 246 54 252; x_wconf 92'>。</span>
+      <span class='ocrx_word' id='word_1_55' title='bbox 76 243 134 255; x_wconf 35' lang='eng'>MWsnet</span>
+      <span class='ocrx_word' id='word_1_56' title='bbox 153 239 188 257; x_wconf 96'>开启</span>
+      <span class='ocrx_word' id='word_1_57' title='bbox 196 240 208 256; x_wconf 96'>了</span>
+      <span class='ocrx_word' id='word_1_58' title='bbox 213 234 259 267; x_wconf 96'>深度</span>
+      <span class='ocrx_word' id='word_1_59' title='bbox 258 239 269 256; x_wconf 93'>学</span>
+      <span class='ocrx_word' id='word_1_60' title='bbox 277 240 287 256; x_wconf 93'>习</span>
+      <span class='ocrx_word' id='word_1_61' title='bbox 295 234 317 267; x_wconf 96'>做</span>
+      <span class='ocrx_word' id='word_1_62' title='bbox 316 234 337 267; x_wconf 93'>三</span>
+      <span class='ocrx_word' id='word_1_63' title='bbox 336 238 356 257; x_wconf 91'>维</span>
+      <span class='ocrx_word' id='word_1_64' title='bbox 355 234 379 267; x_wconf 92'>重</span>
+      <span class='ocrx_word' id='word_1_65' title='bbox 390 239 401 257; x_wconf 93'>建</span>
+      <span class='ocrx_word' id='word_1_66' title='bbox 409 239 422 257; x_wconf 95'>的</span>
+      <span class='ocrx_word' id='word_1_67' title='bbox 429 239 455 258; x_wconf 92'>先河</span>
+      <span class='ocrx_word' id='word_1_68' title='bbox 458 234 473 267; x_wconf 93'>，</span>
+      <span class='ocrx_word' id='word_1_69' title='bbox 473 238 489 257; x_wconf 92'>本</span>
+      <span class='ocrx_word' id='word_1_70' title='bbox 495 234 519 267; x_wconf 93'>质</span>
+      <span class='ocrx_word' id='word_1_71' title='bbox 518 239 537 257; x_wconf 96'>是</span>
+      <span class='ocrx_word' id='word_1_72' title='bbox 536 238 636 257; x_wconf 94'>借鉴</span>
+      <span class='ocrx_word' id='word_1_73' title='bbox 578 234 616 267; x_wconf 96'>基于</span>
+      <span class='ocrx_word' id='word_1_74' title='bbox 615 234 632 267; x_wconf 92'>两</span>
+      <span class='ocrx_word' id='word_1_75' title='bbox 631 234 641 267; x_wconf 0'>引</span>
+     </span>
+     <span class='ocr_line' id='line_1_6' title="bbox 67 274 568 294; baseline 0 -1; x_size 24.8125; x_descenders 5.5; x_ascenders 7.5">
+      <span class='ocrx_word' id='word_1_76' title='bbox 67 274 93 294; x_wconf 92'>计</span>
+      <span class='ocrx_word' id='word_1_77' title='bbox 91 270 111 303; x_wconf 92'>，</span>
+      <span class='ocrx_word' id='word_1_78' title='bbox 110 274 134 294; x_wconf 92'>后</span>
+      <span class='ocrx_word' id='word_1_79' title='bbox 133 270 156 303; x_wconf 91'>续</span>
+      <span class='ocrx_word' id='word_1_80' title='bbox 155 275 177 293; x_wconf 86'>系</span>
+      <span class='ocrx_word' id='word_1_81' title='bbox 176 270 195 303; x_wconf 93'>列</span>
+      <span class='ocrx_word' id='word_1_82' title='bbox 195 275 206 293; x_wconf 95'>的</span>
+      <span class='ocrx_word' id='word_1_83' title='bbox 215 270 253 303; x_wconf 96'>改进</span>
+      <span class='ocrx_word' id='word_1_84' title='bbox 252 275 297 293; x_wconf 96'>思路</span>
+      <span class='ocrx_word' id='word_1_85' title='bbox 298 276 327 294; x_wconf 95'>主要</span>
+      <span class='ocrx_word' id='word_1_86' title='bbox 335 275 356 293; x_wconf 96'>是</span>
+      <span class='ocrx_word' id='word_1_87' title='bbox 355 270 375 303; x_wconf 96'>把</span>
+      <span class='ocrx_word' id='word_1_88' title='bbox 374 275 406 294; x_wconf 96'>回归</span>
+      <span class='ocrx_word' id='word_1_89' title='bbox 413 276 426 293; x_wconf 93'>网</span>
+      <span class='ocrx_word' id='word_1_90' title='bbox 436 274 447 292; x_wconf 88'>络</span>
+      <span class='ocrx_word' id='word_1_91' title='bbox 456 274 480 292; x_wconf 93'>改</span>
+      <span class='ocrx_word' id='word_1_92' title='bbox 479 270 497 303; x_wconf 96'>成</span>
+      <span class='ocrx_word' id='word_1_93' title='bbox 496 270 568 303; x_wconf 92'>cascade。</span>
+     </span>
+    </p>
+
+    <p class='ocr_par' id='par_1_6' lang='chi_sim' title="bbox 48 310 1322 367">
+     <span class='ocr_line' id='line_1_7' title="bbox 48 310 1322 331; baseline 0.002 -4; x_size 22; x_descenders 3; x_ascenders 7">
+      <span class='ocrx_word' id='word_1_94' title='bbox 48 318 54 324; x_wconf 88'>。</span>
+      <span class='ocrx_word' id='word_1_95' title='bbox 76 314 203 327; x_wconf 75'>PatchMatchNet</span>
+      <span class='ocrx_word' id='word_1_96' title='bbox 224 306 268 336; x_wconf 96'>结合</span>
+      <span class='ocrx_word' id='word_1_97' title='bbox 267 312 277 328; x_wconf 97'>了</span>
+      <span class='ocrx_word' id='word_1_98' title='bbox 285 310 326 329; x_wconf 96'>传统</span>
+      <span class='ocrx_word' id='word_1_99' title='bbox 325 306 423 336; x_wconf 92'>PatchMatch</span>
+      <span class='ocrx_word' id='word_1_100' title='bbox 428 310 444 329; x_wconf 92'>算</span>
+      <span class='ocrx_word' id='word_1_101' title='bbox 450 311 464 329; x_wconf 96'>法</span>
+      <span class='ocrx_word' id='word_1_102' title='bbox 473 306 491 336; x_wconf 96'>以</span>
+      <span class='ocrx_word' id='word_1_103' title='bbox 490 311 509 329; x_wconf 96'>及</span>
+      <span class='ocrx_word' id='word_1_104' title='bbox 509 306 553 336; x_wconf 95'>深度</span>
+      <span class='ocrx_word' id='word_1_105' title='bbox 552 311 564 328; x_wconf 93'>学</span>
+      <span class='ocrx_word' id='word_1_106' title='bbox 570 312 582 328; x_wconf 93'>习</span>
+      <span class='ocrx_word' id='word_1_107' title='bbox 591 311 603 329; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_108' title='bbox 614 311 650 330; x_wconf 92'>优点</span>
+      <span class='ocrx_word' id='word_1_109' title='bbox 653 306 671 336; x_wconf 92'>，</span>
+      <span class='ocrx_word' id='word_1_110' title='bbox 670 312 684 329; x_wconf 93'>是</span>
+      <span class='ocrx_word' id='word_1_111' title='bbox 692 310 714 329; x_wconf 96'>一</span>
+      <span class='ocrx_word' id='word_1_112' title='bbox 725 312 733 328; x_wconf 96'>种</span>
+      <span class='ocrx_word' id='word_1_113' title='bbox 734 311 747 329; x_wconf 96'>以</span>
+      <span class='ocrx_word' id='word_1_114' title='bbox 747 310 875 331; x_wconf 90'>learning-based</span>
+      <span class='ocrx_word' id='word_1_115' title='bbox 883 310 1188 330; x_wconf 91'>Patchmatch</span>
+      <span class='ocrx_word' id='word_1_116' title='bbox 994 306 1018 336; x_wconf 87'>为</span>
+      <span class='ocrx_word' id='word_1_117' title='bbox 1017 306 1059 336; x_wconf 96'>主体</span>
+      <span class='ocrx_word' id='word_1_118' title='bbox 1058 306 1074 336; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_119' title='bbox 1073 306 1149 336; x_wconf 92'>cascade</span>
+      <span class='ocrx_word' id='word_1_120' title='bbox 1148 306 1175 336; x_wconf 92'>结</span>
+      <span class='ocrx_word' id='word_1_121' title='bbox 1174 306 1192 336; x_wconf 90'>构</span>
+      <span class='ocrx_word' id='word_1_122' title='bbox 1202 314 1209 328; x_wconf 93'>，</span>
+      <span class='ocrx_word' id='word_1_123' title='bbox 1213 314 1222 328; x_wconf 93'>主</span>
+      <span class='ocrx_word' id='word_1_124' title='bbox 1229 312 1242 330; x_wconf 96'>要</span>
+      <span class='ocrx_word' id='word_1_125' title='bbox 1247 311 1282 329; x_wconf 96'>包括</span>
+      <span class='ocrx_word' id='word_1_126' title='bbox 1287 311 1322 328; x_wconf 96'>基于</span>
+     </span>
+     <span class='ocr_line' id='line_1_8' title="bbox 68 346 983 367; baseline 0 -4; x_size 21; x_descenders 3; x_ascenders 7">
+      <span class='ocrx_word' id='word_1_127' title='bbox 68 348 106 363; x_wconf 92'>FPN</span>
+      <span class='ocrx_word' id='word_1_128' title='bbox 111 347 126 365; x_wconf 90'>的</span>
+      <span class='ocrx_word' id='word_1_129' title='bbox 132 347 146 366; x_wconf 96'>多</span>
+      <span class='ocrx_word' id='word_1_130' title='bbox 152 342 195 371; x_wconf 94'>尺度</span>
+      <span class='ocrx_word' id='word_1_131' title='bbox 194 342 233 371; x_wconf 96'>特征</span>
+      <span class='ocrx_word' id='word_1_132' title='bbox 232 342 271 371; x_wconf 92'>提取</span>
+      <span class='ocrx_word' id='word_1_133' title='bbox 270 342 293 371; x_wconf 92'>、</span>
+      <span class='ocrx_word' id='word_1_134' title='bbox 292 347 313 365; x_wconf 18'>谋</span>
+      <span class='ocrx_word' id='word_1_135' title='bbox 312 342 335 371; x_wconf 59'>入</span>
+      <span class='ocrx_word' id='word_1_136' title='bbox 334 347 347 365; x_wconf 96'>在</span>
+      <span class='ocrx_word' id='word_1_137' title='bbox 352 342 421 371; x_wconf 92'>cascade</span>
+      <span class='ocrx_word' id='word_1_138' title='bbox 428 346 451 364; x_wconf 92'>结</span>
+      <span class='ocrx_word' id='word_1_139' title='bbox 450 342 470 371; x_wconf 93'>构</span>
+      <span class='ocrx_word' id='word_1_140' title='bbox 470 347 480 365; x_wconf 91'>中</span>
+      <span class='ocrx_word' id='word_1_141' title='bbox 488 347 501 365; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_142' title='bbox 502 348 633 367; x_wconf 92'>learning-based</span>
+      <span class='ocrx_word' id='word_1_143' title='bbox 640 347 842 367; x_wconf 92'>Patchmatch</span>
+      <span class='ocrx_word' id='word_1_144' title='bbox 750 342 773 371; x_wconf 90'>以</span>
+      <span class='ocrx_word' id='word_1_145' title='bbox 772 342 788 371; x_wconf 96'>及</span>
+      <span class='ocrx_word' id='word_1_146' title='bbox 787 347 842 367; x_wconf 92'>spatial</span>
+      <span class='ocrx_word' id='word_1_147' title='bbox 849 347 983 366; x_wconf 91'>refinement</span>
+      <span class='ocrx_word' id='word_1_148' title='bbox 950 342 973 371; x_wconf 92'>模</span>
+      <span class='ocrx_word' id='word_1_149' title='bbox 972 342 987 371; x_wconf 92'>块</span>
+     </span>
+    </p>
+
+    <p class='ocr_par' id='par_1_7' lang='chi_sim' title="bbox 48 382 1335 438">
+     <span class='ocr_line' id='line_1_9' title="bbox 48 382 1335 402; baseline 0.002 -4; x_size 24.8125; x_descenders 5.5; x_ascenders 7.5">
+      <span class='ocrx_word' id='word_1_150' title='bbox 48 390 54 396; x_wconf 63'>。</span>
+      <span class='ocrx_word' id='word_1_151' title='bbox 76 386 183 399; x_wconf 84' lang='eng'>NeuralRecon</span>
+      <span class='ocrx_word' id='word_1_152' title='bbox 202 391 219 392; x_wconf 96'>一</span>
+      <span class='ocrx_word' id='word_1_153' title='bbox 225 378 247 411; x_wconf 96'>种</span>
+      <span class='ocrx_word' id='word_1_154' title='bbox 246 382 267 401; x_wconf 96'>新</span>
+      <span class='ocrx_word' id='word_1_155' title='bbox 266 378 286 411; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_156' title='bbox 285 383 319 400; x_wconf 93'>基于</span>
+      <span class='ocrx_word' id='word_1_157' title='bbox 326 383 350 401; x_wconf 92'>单</span>
+      <span class='ocrx_word' id='word_1_158' title='bbox 349 378 366 411; x_wconf 87'>目</span>
+      <span class='ocrx_word' id='word_1_159' title='bbox 365 378 387 411; x_wconf 92'>视</span>
+      <span class='ocrx_word' id='word_1_160' title='bbox 386 383 407 402; x_wconf 92'>频</span>
+      <span class='ocrx_word' id='word_1_161' title='bbox 407 378 428 411; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_162' title='bbox 427 382 459 401; x_wconf 96'>实时</span>
+      <span class='ocrx_word' id='word_1_163' title='bbox 466 384 478 400; x_wconf 93'>三</span>
+      <span class='ocrx_word' id='word_1_164' title='bbox 485 382 509 401; x_wconf 93'>维</span>
+      <span class='ocrx_word' id='word_1_165' title='bbox 508 378 548 411; x_wconf 95'>场景</span>
+      <span class='ocrx_word' id='word_1_166' title='bbox 547 378 593 411; x_wconf 96'>重建</span>
+      <span class='ocrx_word' id='word_1_167' title='bbox 592 378 625 411; x_wconf 72'>框架</span>
+      <span class='ocrx_word' id='word_1_168' title='bbox 627 378 647 411; x_wconf 91'>，</span>
+      <span class='ocrx_word' id='word_1_169' title='bbox 646 382 669 401; x_wconf 92'>其</span>
+      <span class='ocrx_word' id='word_1_170' title='bbox 679 383 709 400; x_wconf 96'>核心</span>
+      <span class='ocrx_word' id='word_1_171' title='bbox 708 378 750 411; x_wconf 96'>思想</span>
+      <span class='ocrx_word' id='word_1_172' title='bbox 758 383 770 401; x_wconf 96'>是</span>
+      <span class='ocrx_word' id='word_1_173' title='bbox 771 383 797 401; x_wconf 96'>利用</span>
+      <span class='ocrx_word' id='word_1_174' title='bbox 807 384 818 400; x_wconf 93'>三</span>
+      <span class='ocrx_word' id='word_1_175' title='bbox 825 382 838 401; x_wconf 92'>维</span>
+      <span class='ocrx_word' id='word_1_176' title='bbox 846 382 867 401; x_wconf 91'>稀</span>
+      <span class='ocrx_word' id='word_1_177' title='bbox 866 378 888 411; x_wconf 0'>踊</span>
+      <span class='ocrx_word' id='word_1_178' title='bbox 887 383 913 402; x_wconf 0'>卷</span>
+      <span class='ocrx_word' id='word_1_179' title='bbox 912 378 929 411; x_wconf 45'>积</span>
+      <span class='ocrx_word' id='word_1_180' title='bbox 928 378 942 411; x_wconf 93'>和</span>
+      <span class='ocrx_word' id='word_1_181' title='bbox 941 384 982 399; x_wconf 91'>GRU</span>
+      <span class='ocrx_word' id='word_1_182' title='bbox 988 382 1016 401; x_wconf 92'>算</span>
+      <span class='ocrx_word' id='word_1_183' title='bbox 1026 397 1029 402; x_wconf 93'>法</span>
+      <span class='ocrx_word' id='word_1_184' title='bbox 1034 378 1049 411; x_wconf 92'>，</span>
+      <span class='ocrx_word' id='word_1_185' title='bbox 1048 378 1072 411; x_wconf 92'>对</span>
+      <span class='ocrx_word' id='word_1_186' title='bbox 1071 382 1094 401; x_wconf 96'>每</span>
+      <span class='ocrx_word' id='word_1_187' title='bbox 1093 378 1113 411; x_wconf 96'>个</span>
+      <span class='ocrx_word' id='word_1_188' title='bbox 1112 378 1152 411; x_wconf 96'>视频</span>
+      <span class='ocrx_word' id='word_1_189' title='bbox 1151 378 1193 411; x_wconf 96'>片段</span>
+      <span class='ocrx_word' id='word_1_190' title='bbox 1192 383 1202 401; x_wconf 92'>的</span>
+      <span class='ocrx_word' id='word_1_191' title='bbox 1211 383 1223 401; x_wconf 88'>稀</span>
+      <span class='ocrx_word' id='word_1_192' title='bbox 1232 382 1251 401; x_wconf 30'>朴</span>
+      <span class='ocrx_word' id='word_1_193' title='bbox 1250 378 1295 411; x_wconf 92'>TSDF</span>
+      <span class='ocrx_word' id='word_1_194' title='bbox 1300 383 1315 401; x_wconf 90'>体</span>
+      <span class='ocrx_word' id='word_1_195' title='bbox 1322 383 1335 401; x_wconf 93'>进</span>
+     </span>
+     <span class='ocr_line' id='line_1_10' title="bbox 67 418 1211 438; baseline 0 -1; x_size 24.587301; x_descenders 5.5873017; x_ascenders 7">
+      <span class='ocrx_word' id='word_1_196' title='bbox 67 418 87 437; x_wconf 92'>行</span>
+      <span class='ocrx_word' id='word_1_197' title='bbox 95 419 106 437; x_wconf 92'>增</span>
+      <span class='ocrx_word' id='word_1_198' title='bbox 115 419 135 437; x_wconf 93'>量</span>
+      <span class='ocrx_word' id='word_1_199' title='bbox 135 414 167 446; x_wconf 93'>联合</span>
+      <span class='ocrx_word' id='word_1_200' title='bbox 177 418 199 436; x_wconf 93'>重</span>
+      <span class='ocrx_word' id='word_1_201' title='bbox 199 414 213 446; x_wconf 89'>构</span>
+      <span class='ocrx_word' id='word_1_202' title='bbox 213 419 226 437; x_wconf 93'>和</span>
+      <span class='ocrx_word' id='word_1_203' title='bbox 235 418 273 438; x_wconf 92'>融合</span>
+      <span class='ocrx_word' id='word_1_204' title='bbox 277 414 291 446; x_wconf 92'>，</span>
+      <span class='ocrx_word' id='word_1_205' title='bbox 291 423 307 437; x_wconf 92'>这</span>
+      <span class='ocrx_word' id='word_1_206' title='bbox 313 418 326 437; x_wconf 96'>种</span>
+      <span class='ocrx_word' id='word_1_207' title='bbox 337 418 367 438; x_wconf 96'>设计</span>
+      <span class='ocrx_word' id='word_1_208' title='bbox 373 414 397 446; x_wconf 91'>能</span>
+      <span class='ocrx_word' id='word_1_209' title='bbox 397 418 419 437; x_wconf 92'>够</span>
+      <span class='ocrx_word' id='word_1_210' title='bbox 419 414 455 446; x_wconf 97'>实时</span>
+      <span class='ocrx_word' id='word_1_211' title='bbox 455 414 486 446; x_wconf 96'>输出</span>
+      <span class='ocrx_word' id='word_1_212' title='bbox 495 414 535 446; x_wconf 96'>精确</span>
+      <span class='ocrx_word' id='word_1_213' title='bbox 535 419 546 437; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_214' title='bbox 555 422 594 437; x_wconf 93'>重建</span>
+      <span class='ocrx_word' id='word_1_215' title='bbox 599 414 613 446; x_wconf 92'>。</span>
+      <span class='ocrx_word' id='word_1_216' title='bbox 607 419 693 438; x_wconf 92'>实</span>
+      <span class='ocrx_word' id='word_1_217' title='bbox 635 414 655 446; x_wconf 93'>验</span>
+      <span class='ocrx_word' id='word_1_218' title='bbox 655 419 693 438; x_wconf 93'>表明</span>
+      <span class='ocrx_word' id='word_1_219' title='bbox 693 414 823 446; x_wconf 91'>，NeuralRecon</span>
+      <span class='ocrx_word' id='word_1_220' title='bbox 829 414 851 446; x_wconf 91'>在</span>
+      <span class='ocrx_word' id='word_1_221' title='bbox 851 414 895 446; x_wconf 96'>重建</span>
+      <span class='ocrx_word' id='word_1_222' title='bbox 895 414 931 446; x_wconf 96'>质量</span>
+      <span class='ocrx_word' id='word_1_223' title='bbox 931 414 949 446; x_wconf 97'>和</span>
+      <span class='ocrx_word' id='word_1_224' title='bbox 949 414 995 446; x_wconf 96'>运行</span>
+      <span class='ocrx_word' id='word_1_225' title='bbox 995 414 1033 446; x_wconf 93'>速度</span>
+      <span class='ocrx_word' id='word_1_226' title='bbox 1033 414 1053 446; x_wconf 95'>上</span>
+      <span class='ocrx_word' id='word_1_227' title='bbox 1053 419 1077 438; x_wconf 91'>都</span>
+      <span class='ocrx_word' id='word_1_228' title='bbox 1077 414 1095 446; x_wconf 92'>优</span>
+      <span class='ocrx_word' id='word_1_229' title='bbox 1095 420 1115 438; x_wconf 90'>于</span>
+      <span class='ocrx_word' id='word_1_230' title='bbox 1115 414 1131 446; x_wconf 91'>现</span>
+      <span class='ocrx_word' id='word_1_231' title='bbox 1131 418 1144 437; x_wconf 93'>有</span>
+      <span class='ocrx_word' id='word_1_232' title='bbox 1149 419 1163 437; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_233' title='bbox 1173 418 1204 438; x_wconf 93'>方法</span>
+      <span class='ocrx_word' id='word_1_234' title='bbox 1207 432 1211 437; x_wconf 92'>。</span>
+     </span>
+    </p>
+   </div>
+   <div class='ocr_separator' id='block_1_18' title="bbox 650 239 652 257"></div>
+   <div class='ocr_carea' id='block_1_19' title="bbox 652 240 666 254">
+    <p class='ocr_par' id='par_1_8' lang='eng' title="bbox 652 240 666 254">
+     <span class='ocr_line' id='line_1_11' title="bbox 652 240 666 254; textangle 90; x_size 20; x_descenders 5; x_ascenders 5">
+      <span class='ocrx_word' id='word_1_235' title='bbox 652 240 666 254; x_wconf 45'>[ai</span>
+     </span>
+    </p>
+   </div>
+   <div class='ocr_separator' id='block_1_20' title="bbox 666 239 668 257"></div>
+   <div class='ocr_separator' id='block_1_21' title="bbox 1197 237 1296 244"></div>
+   <div class='ocr_separator' id='block_1_22' title="bbox 570 250 668 258"></div>
+   <div class='ocr_carea' id='block_1_23' title="bbox 670 238 1316 258">
+    <p class='ocr_par' id='par_1_9' lang='chi_sim' title="bbox 670 238 1316 258">
+     <span class='ocr_line' id='line_1_12' title="bbox 670 238 1316 258; baseline 0 -1; x_size 24.044445; x_descenders 6.0111113; x_ascenders 6.0111113">
+      <span class='ocrx_word' id='word_1_236' title='bbox 670 239 689 257; x_wconf 92'>片</span>
+      <span class='ocrx_word' id='word_1_237' title='bbox 693 234 726 268; x_wconf 91'>cost</span>
+      <span class='ocrx_word' id='word_1_238' title='bbox 734 240 795 255; x_wconf 92'>volume</span>
+      <span class='ocrx_word' id='word_1_239' title='bbox 799 239 815 257; x_wconf 92'>的</span>
+      <span class='ocrx_word' id='word_1_240' title='bbox 821 240 836 257; x_wconf 93'>双</span>
+      <span class='ocrx_word' id='word_1_241' title='bbox 842 240 853 257; x_wconf 90'>目</span>
+      <span class='ocrx_word' id='word_1_242' title='bbox 863 238 907 257; x_wconf 96'>立体</span>
+      <span class='ocrx_word' id='word_1_243' title='bbox 906 234 936 268; x_wconf 96'>匹配</span>
+      <span class='ocrx_word' id='word_1_244' title='bbox 944 239 955 257; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_245' title='bbox 963 234 1002 268; x_wconf 96'>深度</span>
+      <span class='ocrx_word' id='word_1_246' title='bbox 1001 238 1036 257; x_wconf 96'>估计</span>
+      <span class='ocrx_word' id='word_1_247' title='bbox 1044 238 1082 258; x_wconf 93'>方法</span>
+      <span class='ocrx_word' id='word_1_248' title='bbox 1084 234 1100 268; x_wconf 92'>，</span>
+      <span class='ocrx_word' id='word_1_249' title='bbox 1099 239 1116 256; x_wconf 92'>扩</span>
+      <span class='ocrx_word' id='word_1_250' title='bbox 1120 240 1142 257; x_wconf 91'>展</span>
+      <span class='ocrx_word' id='word_1_251' title='bbox 1149 239 1155 257; x_wconf 93'>到</span>
+      <span class='ocrx_word' id='word_1_252' title='bbox 1156 239 1183 258; x_wconf 93'>多</span>
+      <span class='ocrx_word' id='word_1_253' title='bbox 1184 234 1206 268; x_wconf 93'>张</span>
+      <span class='ocrx_word' id='word_1_254' title='bbox 1205 239 1227 257; x_wconf 93'>图</span>
+      <span class='ocrx_word' id='word_1_255' title='bbox 1237 239 1247 257; x_wconf 93'>片</span>
+      <span class='ocrx_word' id='word_1_256' title='bbox 1246 234 1266 268; x_wconf 96'>的</span>
+      <span class='ocrx_word' id='word_1_257' title='bbox 1256 239 1316 257; x_wconf 93'>深度</span>
+      <span class='ocrx_word' id='word_1_258' title='bbox 1301 234 1319 268; x_wconf 91'>估</span>
+     </span>
+    </p>
+   </div>
+   <div class='ocr_separator' id='block_1_24' title="bbox 570 253 668 258"></div>
+   <div class='ocr_separator' id='block_1_25' title="bbox 1197 239 1199 257"></div>
+   <div class='ocr_separator' id='block_1_26' title="bbox 1197 255 1215 256"></div>
+   <div class='ocr_separator' id='block_1_27' title="bbox 297 275 298 292"></div>
+   <div class='ocr_separator' id='block_1_28' title="bbox 1210 239 1216 328"></div>
+   <div class='ocr_separator' id='block_1_29' title="bbox 168 409 666 430"></div>
+  </div>
+ </body>
+</html>
