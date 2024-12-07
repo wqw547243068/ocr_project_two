@@ -5,4 +5,5 @@ pdfplumber
 pytesseract
 pillow
 opencv-python
+langid
 # «∞∂À“¿¿µ
