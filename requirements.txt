@@ -6,4 +6,6 @@ pytesseract
 pillow
 opencv-python
 langid
+paddlepaddle
+paddleocr
 # «∞∂À“¿¿µ
