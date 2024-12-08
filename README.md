@@ -12,6 +12,22 @@ OCR 项目, 实现多文件类型、多语种的离线OCR检测功能
   - `cache_file` 用户上传文件缓存目录
 
 
+## 部署
+
+步骤
+- 后端
+  - 后端服务框架: flask
+  - OCR工具: tesseract/PaddleOCR
+    - tesseract 安装: 
+      - 先去[官网](https://github.com/UB-Mannheim/tesseract/wiki)找对应操作系统的软件并安装
+      - 其次才是安装 python 接口 `pip install pytesseract`
+    - PaddleOCR 安装: 需要安装 百度深度学习框架 飞浆，其次才是 paddleocr
+      - `pip install paddlepaddle paddleocr`
+  - 文档解析工具: word, pdf 解析工具
+- 前端
+  - 依赖: node.js
+
+
 ## 前端
 
 
