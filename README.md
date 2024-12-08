@@ -2,6 +2,11 @@
 
 OCR 项目, 实现多文件类型、多语种的离线OCR检测功能
 
+## UI
+
+Web UI
+- ![](test/home.jpg)
+- ![](test/ocr.jpg)
 
 ## 整体结构
 
@@ -11,6 +16,24 @@ OCR 项目, 实现多文件类型、多语种的离线OCR检测功能
 - 数据目录:
   - `cache_file` 用户上传文件缓存目录
 
+技术流程图
+- ![](test/tech.png)
+
+不同OCR方案对比
+- ![](test/comparesion.png)
+
+
+## 功能
+
+主要功能
+- 多语种: 中英日法德, 语种可定制
+- 文字识别: 印刷体、手写体
+- 文档解析: word/pdf
+- 结果可视化
+
+部分难样本实测
+- ![手写体](test/hand1.png)
+- ![手写体](hand2.png)
 
 ## 部署
 
@@ -20,6 +43,7 @@ OCR 项目, 实现多文件类型、多语种的离线OCR检测功能
   - OCR工具: tesseract/PaddleOCR
     - tesseract 安装: 
       - 先去[官网](https://github.com/UB-Mannheim/tesseract/wiki)找对应操作系统的软件并安装
+        - windows [软件包](https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.3.0.20221214.exe)
       - 其次才是安装 python 接口 `pip install pytesseract`
     - PaddleOCR 安装: 需要安装 百度深度学习框架 飞浆，其次才是 paddleocr
       - `pip install paddlepaddle paddleocr`
