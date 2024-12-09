@@ -13,6 +13,8 @@
 import os
 import json
 import logging
+import threading
+from queue import Queue
 from flask import Flask, request, jsonify, render_template, send_file
 
 app = Flask(__name__)
@@ -35,7 +37,6 @@ import pytesseract
 from paddleocr import PaddleOCR, draw_ocr
 import langid
 
-ocr = PaddleOCR(use_angle_cls=True, lang='ch')
 
 cur_dir = os.path.dirname(__file__)
 cache_dir = os.path.join(cur_dir, os.pardir, 'cache_file')
@@ -43,10 +44,58 @@ cache_dir = os.path.join(cur_dir, os.pardir, 'cache_file')
 app.config['UPLOAD_FOLDER'] = cache_dir
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 设置最大文件上传大小为 100MB
 
-
-
 if not os.path.exists(cache_dir):
     os.mkdirs(cache_dir)
+
+# 多语种支持
+languages = ['ch', 'en', 'japan', 'fr', 'de']  # 需要支持的语言列表
+
+# 模型初始化
+# ocr = PaddleOCR(use_angle_cls=True, lang='ch')
+ocr_api_info = {}
+for lang in languages:
+    ocr_api_info[lang] = PaddleOCR(use_angle_cls=True, lang=lang, show_log=False)
+
+def log(msg):
+    """
+        多进程日志输出
+    """
+    pid = os.getpid()
+    tid = threading.current_thread().ident
+    logging.info(f"进程[{pid}]-线程[{tid}]: {msg}")
+
+def getResult(lock, lang, file_name, q):
+    """
+        单次 OCR 请求
+    """
+    log('开始请求OCR服务')
+    # 开始请求OCR服务
+    result = ocr_api_info[lang].ocr(file_name)
+    # 多种返回结果: 空、一个识别结果、多个识别结果
+    # [null]
+    #  [[
+    #     [[[1931.0, 1453.0], [1990.0, 1453.0], [1990.0, 1487.0], [1931.0, 1487.0]], ["191t", 0.7493318915367126]]
+    #  ]]
+    # [[
+    #     [[[297.0, 157.0], [1755.0, 124.0], [1760.0, 337.0], [301.0, 370.0]], ["很多人不需要再见!", 0.9498765468597412]], 
+    #     [[[351.0, 493.0], [1773.0, 468.0], [1776.0, 657.0], [354.0, 683.0]], ["因为只是路过而已.", 0.8729634881019592]], 
+    #     [[[334.0, 833.0], [1755.0, 842.0], [1753.0, 1049.0], [333.0, 1039.0]], ["遗忘就是我给你", 0.9973150491714478]], 
+    #     [[[404.0, 1153.0], [1457.0, 1182.0], [1450.0, 1434.0], [397.0, 1404.0]], ["最好的纪念。", 0.951411783695221]], 
+    #     [[[1935.0, 1460.0], [1988.0, 1460.0], [1988.0, 1485.0], [1935.0, 1485.0]], ["19楼", 0.9435752034187317]]
+    # ]]
+    lock.acquire()
+    if not result[0]:
+        pass
+    else:
+        # 计算平均得分
+        score_list = [i[1][1] for i in result[0]]
+        score_avg = sum(score_list)/len(score_list)
+        print(f'[Note] {lang=}: \t{score_avg}\t{json.dumps([i[1][0] for i in result[0]], ensure_ascii=False)}')
+    lock.release()
+    q.put([lang, score_avg, result[0]])
+    log('请求完毕')
+
+
 
 def parseDoc(file_name):
     """
@@ -164,7 +213,63 @@ def parseOCRNew(file_name):
     return content_info
 
 
+def multiOCR(file_name):
+    """
+        图片OCR: PaddleOCR, 多进程识别，选最优
+        特点: 识别效果更好，但不支持多语种自动检测
+    """
+    content_info = {"num": 0, "content":[], "status":0, "msg":'-', "merge_image":'-'}
 
+    thread_lock = threading.Lock()
+
+    job_list = []
+    q = Queue() # 存储结果
+
+    for lang in languages:
+        job = threading.Thread(target=getResult, args=(thread_lock, lang, file_name, q), name=f'job_{lang}')
+        job.start()
+        job_list.append(job)
+    
+    # 阻塞在主进程前面
+    for thread in job_list:
+        thread.join()
+
+    results = []
+    for _ in languages:
+        # [lang, score_avg, result[0]]
+        results.append(q.get())
+    
+    best_result = max(results, key=lambda x: x[1])
+
+    text = '\n'.join([i[1][0] for i in best_result[2]])
+    print(f'Best Result: {best_result[0]}\t{best_result[1]}\t{best_result[2]}')
+    print('Result: ', json.dumps(text, ensure_ascii=False))
+
+    # 结果可视化展示
+    result = best_result[2]
+    image = Image.open(file_name).convert('RGB')
+    boxes, txts, scores = [], [], []
+    for line in result:
+        if not line:
+            continue
+        boxes.append(line[0])
+        txts.append(line[1][0])
+        scores.append(line[1][1])
+
+    im_show = draw_ocr(image, boxes, txts, scores, font_path='/fonts/simfang.ttf')
+    im_show = Image.fromarray(im_show)
+    new_file = os.path.basename(file_name).replace('.', '_merge.')
+    remote_file = f'http://localhost:5000/download?fileId={new_file}'
+    im_show.save(os.path.join(os.path.dirname(file_name), new_file))
+    # im_show.show('result.jpg')
+
+    content_info['num'] = len(result)
+    content_info['content'] = [f'[语种]{best_result[0]}', f'[得分]{best_result[1]}']+[i[1][0] for i in result]
+    content_info['status'] = 2
+    content_info['msg'] = '图片OCR并行解析完毕'
+    content_info['merge_image'] = remote_file
+
+    return content_info
 
 @app.route('/')
 def home():
@@ -262,19 +367,20 @@ def post_data():
         # res = some_function(cur_file)
         res['data']['content'] = ['ocr 文档内容']
         res['msg'] = '图片文件'
-        out = parseOCR(cur_file)
-        # 判断识别出来的文本质量, 语种检测非中文时, 重新生成
-        detect_res = False # 判断是否中文
-        if out['num'] > 0:
-            tmp = langid.classify(','.join(out['content']))
-            if tmp[0] == 'zh':
-                detect_res = True
-        if out['num'] == 0 or not detect_res:
-            # print(f'二次检测, {out}')
-            logger.warning('启动二次检测, 疑似手写体')
-            # 启动中文手写体识别
-            # out = parseOCR(cur_file, hand=True)
-            out = parseOCRNew(cur_file)
+        # out = parseOCR(cur_file)
+        out = multiOCR(cur_file)
+        # # 判断识别出来的文本质量, 语种检测非中文时, 重新生成
+        # detect_res = False # 判断是否中文
+        # if out['num'] > 0:
+        #     tmp = langid.classify(','.join(out['content']))
+        #     if tmp[0] == 'zh':
+        #         detect_res = True
+        # if out['num'] == 0 or not detect_res:
+        #     # print(f'二次检测, {out}')
+        #     logger.warning('启动二次检测, 疑似手写体')
+        #     # 启动中文手写体识别
+        #     # out = parseOCR(cur_file, hand=True)
+        #     out = parseOCRNew(cur_file)
         res['status'] = out['status']
         if out['msg'] != '-':
             res['msg'] = out['msg']
