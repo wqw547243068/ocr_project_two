@@ -2,7 +2,7 @@
 # -*- coding:utf8 -*- 
 
 # **************************************************************************
-# * Copyright (c) 2024 ke.com, Inc. All Rights Reserved
+# * Copyright (c) 2024. All Rights Reserved
 # **************************************************************************
 # * @function OCR Demo, easyOCR+Gradio实现, windows 环境
 # * @author wqw547243068@163.com

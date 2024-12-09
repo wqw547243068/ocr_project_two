@@ -24,6 +24,10 @@ from paddleocr import PaddleOCR, draw_ocr
 # file_name = r"E:\ocr\data\hand\1.jpg"
 file_name = r"E:\ocr\data\hand\3.jpg"
 # file_name = r"E:\ocr\data\OCR_e2e_img\general_ocr_001.png"
+file_name = r"E:\ocr\data\多国语言-1205\日文\1.jpeg"
+file_name = r"E:\ocr\data\多国语言-1205\日文\2.png"
+file_name = r"E:\ocr\data\多国语言-1205\法文\2.png"
+file_name = r"E:\ocr\data\多国语言-1205\德语\1.png"
 
 # # 语言检测 以下代码未调试通过
 # # pip install paddleclas
@@ -39,7 +43,9 @@ file_name = r"E:\ocr\data\hand\3.jpg"
 # 语种选择: ['ch', 'en', 'korean', 'japan', 'chinese_cht', 'ta', 'te', 'ka', 'latin', 'arabic', 'cyrillic', 'devanagari']
 # ocr = PaddleOCR(use_angle_cls=True) # 默认ch 中文+英文
 # ocr = PaddleOCR(use_angle_cls=True, lang='en') # need to run only once to download and load model into memory
-ocr = PaddleOCR(use_angle_cls=True, lang='ch')
+# ocr = PaddleOCR(use_angle_cls=True, lang='ch') 
+ocr = PaddleOCR(use_angle_cls=True, lang='fr') # 法文
+ocr = PaddleOCR(use_angle_cls=True, lang='german') # 德文
 # ocr = PaddleOCR(use_angle_cls=True, lang='japan') # 不支持一次指定多种语言
 # ocr = PaddleOCR(use_angle_cls=True, lang='ch', use_gpu=False, det=True, rec=True, cls=True)
 # 指定手写体
