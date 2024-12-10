@@ -54,25 +54,6 @@ Web UI
 
 ### 离线部署
 
-【2024-12-9】多种打包方式 [参考](https://blog.csdn.net/qq_37354233/article/details/123731111)
-1. 导出安装包为`requirements.txt`:  目标电脑需要安装同版本python并且**联网**使用
-   1. `pip freeze > requirements.txt` # 依赖包冗余, 改: pipreqs your_dir/
-   2. `pip install -r requirements.txt`
-2. 导出安装包为`requirements.txt`:  目标电脑需要安装同版本python**无需联网**使用
-   1. 有网电脑上准备 离线 wheel 包  `pip download -d ./packs -r requirements.txt`，复制文件到U盘
-   3. 无网电脑上安装 `pip install --no-index --find-links=./packs -r requirements.txt`
-3. **虚拟环境**: venv/virtualenv, 目标电脑需要安装**同版本python**
-   1. 虚拟环境: `python -m venv pyvenv`
-   2. 激活虚拟环境,安装依赖包，出现在 lib/site-package 目录下，复制到U盘
-   3. 目标电脑上创建虚拟环境
-   4. 替换无网电脑上 lib/site-package 文件
-4. python**绿色版本**: 目标电脑**无需**安装python
-   1. 下载绿色版 Python, embeddable就是绿色版
-      1. [python-3109](https://www.python.org/downloads/windows/)
-      2. 
-   2. 下载 get-pip.py, 浏览器输入链接: [https://bootstrap.pypa.io/get-pip.py](https://bootstrap.pypa.io/get-pip.py) 右键另存为 保存到解压文件夹中
-      1. 安装 pip: `python get-pip.py`
-
 
 ```sh
 # 后端源码,更新已有文件
@@ -84,6 +65,7 @@ wget https://www.python.org/ftp/python/3.11.1/python-3.11.1-embed-amd64.zip
 # 解压后, 添加路径到 系统变量 path 路径
 # 准备 get-pip.py
 访问 https://bootstrap.pypa.io/get-pip.py, 右键另存为 get-pip.py
+
 
 # 准备离线wheel包
 pip download -d ./packs -r requirements.txt
@@ -102,17 +84,20 @@ npm run dev # 确认页面功能正常
 
 # ------------【无网环境】------------
 
-
-# 安装 node.js
+# 文件复制
+$a='U盘复制过来的目录'
+cd $a
+# 安装 node.js, 双击
 
 # 添加Python路径到 系统变量 path 路径
 
 # 安装 pip
 python get-pip.py
 # 安装工具包
+cd $a
 pip install --no-index --find-links=./packs -r requirements.txt
 
-# 安装 node.js
+cd ocr_project
 
 # 启动后端服务
 cd backend
@@ -123,6 +108,7 @@ cd ocr-ui
 npm install # 生成 dist 目录
 npm run dev # 确认页面功能正常
 
+# 打开网页 127.0.0.1:5000
 
 ```
 

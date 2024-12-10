@@ -1,5 +1,5 @@
 # !/usr/bin/env python
-# -*- coding:gbk -*- 
+# -*- coding:utf-8 -*- 
 
 # **************************************************************************
 # * Copyright (c) 2024. All Rights Reserved
@@ -46,7 +46,7 @@ file_name = r"E:\ocr\data\多国语言-1205\德语\1.png"
 # ocr = PaddleOCR(use_angle_cls=True, lang='ch') 
 ocr = PaddleOCR(use_angle_cls=True, lang='fr') # 法文
 ocr = PaddleOCR(use_angle_cls=True, lang='german') # 德文
-# ocr = PaddleOCR(use_angle_cls=True, lang='japan') # 不支持一次指定多种语言
+# ocr = PaddleOCR(use_angle_cls=True, lang='japan') # 日文
 # ocr = PaddleOCR(use_angle_cls=True, lang='ch', use_gpu=False, det=True, rec=True, cls=True)
 # 指定手写体
 # handwriting_ocr = PaddleOCR(use_angle_cls=True, use_gpu=False, det_model_dir='handwriting_det', rec_model_dir='handwriting_rec')
