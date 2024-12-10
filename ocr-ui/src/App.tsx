@@ -13,8 +13,10 @@ function App() {
   }
   return (
     <div>
-        <div style={{ paddingLeft: 20, background: '#165dff', height: '60px', paddingTop: '12px', fontSize: 25, textAlign: 'left', fontFamily: 'sans-serif' }}>文档数字化平台</div>
-        <Layout style={{color: '#1d2129',height: 'calc(100vh - 60px)'}}>
+        <div style={{ paddingLeft: 20, background:'URL(/banner.png)', backgroundSize: '108%100%', color: '#fffde7', height: '60px', paddingTop: '12px', fontSize: 20, textAlign: 'left', fontFamily:'sans-serif'}}> 
+          <div style={{marginLeft:300}}>文档数字化平台</div>
+        </div>
+        <Layout style={{color: '#1d2129', height: 'calc(100vh - 60px)'}}>
           <Sider
             // collapsed={this.state.collapsed}
             // onCollapse={this.handleCollapsed}
