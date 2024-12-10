@@ -1,11 +1,9 @@
-# ∫Û∂À“¿¿µ
-flask
-python-docx
-pdfplumber
-pytesseract
-pillow
-opencv-python
-langid
+# 
+Flask==1.1.2
+langid==1.1.6
 paddlepaddle
-paddleocr
-# «∞∂À“¿¿µ
+paddleocr==2.9.1
+pdfplumber==0.11.4
+Pillow==11.0.0
+python_docx==1.1.2
+

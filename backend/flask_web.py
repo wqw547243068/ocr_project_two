@@ -15,6 +15,7 @@ import json
 import logging
 import threading
 from queue import Queue
+import socket
 from flask import Flask, request, jsonify, render_template, send_file
 
 app = Flask(__name__)
@@ -33,7 +34,7 @@ logger = logging.getLogger(__name__)
 from PIL import Image
 from docx import Document
 import pdfplumber
-import pytesseract
+# import pytesseract
 from paddleocr import PaddleOCR, draw_ocr
 import langid
 
@@ -55,6 +56,23 @@ languages = ['ch', 'en', 'japan', 'fr', 'de']  # 需要支持的语言列表
 ocr_api_info = {}
 for lang in languages:
     ocr_api_info[lang] = PaddleOCR(use_angle_cls=True, lang=lang, show_log=False)
+
+
+def extract_ip():
+    st = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:       
+        st.connect(('10.255.255.255', 1))
+        IP = st.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        st.close()
+    return IP
+
+# 服务器 ip地址: 跨机器访问时图片无法显示，ip地址从localhost改127.0.0.1或0.0.0.0都不管用，最后用实际ip地址
+# http://0.0.0.0:5000/download?fileId=123.tar
+local_host_ip = extract_ip()
+local_file_url = f'http://{local_host_ip}:5000/download?fileId='
 
 def log(msg):
     """
@@ -85,7 +103,7 @@ def getResult(lock, lang, file_name, q):
     # ]]
     lock.acquire()
     if not result[0]:
-        pass
+        score_avg = 0
     else:
         # 计算平均得分
         score_list = [i[1][1] for i in result[0]]
@@ -148,9 +166,11 @@ def parseOCR(file_name, hand=False):
     # 读取文档
     try:
         if hand:
-            out = pytesseract.image_to_string(file_name, lang='chi_sim', config="--psm 4") # 中文手写体识别
+            out = []
+            # out = pytesseract.image_to_string(file_name, lang='chi_sim', config="--psm 4") # 中文手写体识别
         else:
-            out = pytesseract.image_to_string(file_name, lang='chi_sim+eng+deu+fra+rus+jpn')
+            out = []
+            # out = pytesseract.image_to_string(file_name, lang='chi_sim+eng+deu+fra+rus+jpn')
         # 数据示例： g 611 283 631 297 0
         out = out.split('\n') if out else []
         # out = [ i.replace(' ','') for i in out.split('\n')]
@@ -195,7 +215,7 @@ def parseOCRNew(file_name):
         im_show = draw_ocr(image, boxes, txts, scores, font_path='/fonts/simfang.ttf')
         im_show = Image.fromarray(im_show)
         new_file = os.path.basename(file_name).replace('.', '_merge.')
-        remote_file = f'http://localhost:5000/download?fileId={new_file}'
+        remote_file = local_file_url + new_file
         im_show.save(os.path.join(os.path.dirname(file_name), new_file))
         # im_show.show('result.jpg')
 
@@ -240,7 +260,8 @@ def multiOCR(file_name):
         results.append(q.get())
     
     best_result = max(results, key=lambda x: x[1])
-
+    if not best_result: # 结果为空
+        best_result = ['未知', 0, '检测结果为空']
     text = '\n'.join([i[1][0] for i in best_result[2]])
     print(f'Best Result: {best_result[0]}\t{best_result[1]}\t{best_result[2]}')
     print('Result: ', json.dumps(text, ensure_ascii=False))
@@ -259,7 +280,7 @@ def multiOCR(file_name):
     im_show = draw_ocr(image, boxes, txts, scores, font_path='/fonts/simfang.ttf')
     im_show = Image.fromarray(im_show)
     new_file = os.path.basename(file_name).replace('.', '_merge.')
-    remote_file = f'http://localhost:5000/download?fileId={new_file}'
+    remote_file = local_file_url + new_file
     im_show.save(os.path.join(os.path.dirname(file_name), new_file))
     # im_show.show('result.jpg')
 
@@ -284,7 +305,7 @@ def home():
 def download_file():
     """
     下载 src_file 目录下的文件
-    eg: 下载当前目录下123.tar 文件 http://localhost:5000/download?fileId=123.tar
+    eg: 下载当前目录下123.tar 文件 http://0.0.0.0:5000/download?fileId=123.tar
     """
     file_name = request.args.get('fileId')
     file_path = os.path.join(cache_dir, file_name)
@@ -307,7 +328,7 @@ def post_data():
         # 文件写入磁盘
         cur_file = os.path.join(cache_dir, file.filename)
         file.save(cur_file)
-        remote_file = f'http://localhost:5000/download?fileId={file.filename}'
+        remote_file = local_file_url + file.filename
     elif request.method == 'GET':
         data = request.args
         cur_file = data['uploadFile']
@@ -343,7 +364,7 @@ def post_data():
         res['msg'] = 'word文件'
         out = parseDoc(cur_file)
         res['status'] = out['status']
-        res['data']['merge_image'] = f'http://localhost:5000/download?fileId=word.jpg'
+        res['data']['merge_iamge'] = local_file_url + 'word.jpg'
         if out['msg'] != '-':
             res['msg'] = out['msg']
         if out['status'] > 0:
@@ -355,7 +376,7 @@ def post_data():
         res['msg'] = 'pdf文件'
         out = parsePDF(cur_file)
         res['status'] = out['status']
-        res['data']['merge_image'] = f'http://localhost:5000/download?fileId=pdf.jpg'
+        res['data']['merge_iamge'] = local_file_url + 'pdf.jpg'
         if out['msg'] != '-':
             res['msg'] = out['msg']
         if out['status'] > 0:
@@ -395,6 +416,7 @@ def post_data():
     else:
         res['data']['content'] = ['非预期格式']
         res['msg'] = '其它文件'
+        out = []
     print(f"请求参数: {data=}, {out=}, {res=}")
     # return res
     # return jsonify(res)
