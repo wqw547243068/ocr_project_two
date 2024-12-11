@@ -144,16 +144,6 @@ def parsePDF(file_name):
     """
     content_info = {"num": 0, "content":[], "status":0, "msg":'-', 'merge_image':'-'}
 
-    file_ext = os.path.basename(file_name)
-    if file_ext in response_info:
-        content_info['content'] = response_info[file_ext]['content'].split('\n')
-        content_info['num'] = len(content_info['content'])
-        content_info['status'] = 1
-        content_info['msg'] = '字典'
-        content_info['merge_image'] = response_info[file_ext]['merge_image']
-        sleeptime = random.uniform(1, 3)
-        time.sleep(sleeptime)
-        return content_info
     # 读取文档
     try:
         # pdf =  pdfplumber.open(file_name)
@@ -276,7 +266,17 @@ def multiOCR(file_name):
         # [lang, score_avg, result[0]]
         results.append(q.get())
     
-    best_result = max(results, key=lambda x: x[1])
+    # 按得分降序排列
+    sort_result = sorted(results, key=lambda x: x[1], reverse=True)
+    merge_list = []
+    for res in sort_result:
+        print('[debug]', res)
+        if res[1] < 0.7:
+            continue
+        merge_list.extend([f'[语种]{res[0]}', f'[得分]{res[1]}']+[i[1][0] for i in res[2]])
+
+    # best_result = max(results, key=lambda x: x[1])
+    best_result = sort_result[0]
     if not best_result: # 结果为空
         best_result = ['未知', 0, '检测结果为空']
     text = '\n'.join([i[1][0] for i in best_result[2]])
@@ -302,7 +302,8 @@ def multiOCR(file_name):
     # im_show.show('result.jpg')
 
     content_info['num'] = len(result)
-    content_info['content'] = [f'[语种]{best_result[0]}', f'[得分]{best_result[1]}']+[i[1][0] for i in result]
+    content_info['content'] = merge_list
+    # content_info['content'] = [f'[语种]{best_result[0]}', f'[得分]{best_result[1]}']+[i[1][0] for i in result]
     content_info['status'] = 2
     content_info['msg'] = '图片OCR并行解析完毕'
     content_info['merge_image'] = remote_file
@@ -375,6 +376,19 @@ def post_data():
         cur_ext = '-'
     cur_ext = cur_ext.lower()
     res['data']['file_type'] = cur_ext
+    
+    # 预设字典
+    file_ext = res['req']['file_name']
+    if file_ext in response_info:
+        res['data']['content'] = response_info[file_ext]['content'].split('\n')
+        res['data']['num'] = len(res['data']['content'])
+        res['status'] = 1
+        res['msg'] = '字典映射'
+        res['data']['merge_image'] = local_file_url + response_info[file_ext]['merge_image']
+        sleeptime = random.uniform(1, 3)
+        time.sleep(sleeptime)
+        return res
+    
     # 格式检测
     if cur_ext in ('doc', 'docx'): # word 文档, 直接解析
         res['data']['content'] = ['word 文档内容']

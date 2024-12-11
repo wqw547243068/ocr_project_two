@@ -38,5 +38,47 @@ von dem 15. bis dem 30. Oktober in Norddeutschland und in der baltischen See sta
 Ziel der Übung war die Verbesserung der Kooperationsfähigkeit und der taktischen Koordinierung
 zwischen die teilnehmenden Streitkräfte. Besonders hervorgehoben wurden die Fähigkeiten der
 Luftverteidigung, der Seeverteidigung und der landbasierter Kampfkräfte."""
+    },
+    "all_hand.png": {
+        "merge_image": "all_hand_merge.png",
+        "content": """[语种]ch
+[得分]0.869832484345687
+
+宁可跑起来摔倒无数次，
+也不要规规知知走一辈子，
+就算跌倒也要豪迈地笑。
+
+[语种]en
+[得分]0.7894557019074758
+
+Fortunately there will be a speech gien by a professor
+Smith frm a fomus uniersity. Aiming to compore the
+difference and the Simularity between China ond America Mr.S
+will answer the question in patience and take the speech seniusy
+
+[语种]japan
+[得分]0.7636239142485068
+
+も達法者の仕はご遺体を調べをし正確方
+死因をだしまをえにラくニヒぞすもちろんえこには
+北人の愛雨や気持なんて考がやていませんご遠体を前にしてあるの
+はただををたという取り通しのつかかいだけてす
+
+
+[语种]fr
+[得分]0.7783048874453494
+
+Ce dormeur du vad
+CtrthurRimbaud(1854-1891)
+C'estun trou de verdure ou chante une riviere
+Ctccroctant follement awx herbes des haillons
+
+[语种]de
+[得分]0.7783048874453494
+
+Du frische junge diel so ikend wiv der Mat.
+nun iot der Herbst gekonmen und alles ist vorkei.
+Mr einmal konnt'ick wakrhaft dieken
+es war das erste Mal."""
     }
 }
