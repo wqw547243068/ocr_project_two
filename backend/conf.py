@@ -1,6 +1,25 @@
+import sys 
 
-font_path = "C:\Windows\Fonts\simfang.ttf"
+# 字体路径
+sys_name = sys.platform
+if sys_name.startswith('win32') or sys_name.startwith('cygwin'):
+    print('windows 系统')
+    font_path = "C:\\Windows\\Fonts\\" # win 10 路径
+elif sys_name.startswith('linux'):
+    print('linux系统')
+    font_path = "/usr/share/fonts/" # linux 路径
+    
+elif sys_name.startswith('darwin'):
+    print('Mac OS X 系统')
+    font_path = "/System/Library/Fonts/" # mac 路径
+else:
+    print(f'未知系统: {sys_name}')
+    sys.exit(1)
 
+font_path += 'simfang.ttf'
+print(f'当前系统 {sys_name=}, 字体路径 {font_path=}')
+
+# 快捷回复
 response_info = {
     "印刷体.pdf": {
         "merge_image":"all_merge.jpg",
