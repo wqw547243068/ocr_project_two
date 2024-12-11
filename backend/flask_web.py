@@ -16,7 +16,10 @@ import logging
 import threading
 from queue import Queue
 import socket
+import time
+import random
 from flask import Flask, request, jsonify, render_template, send_file
+from conf import response_info
 
 app = Flask(__name__)
 
@@ -36,7 +39,7 @@ from docx import Document
 import pdfplumber
 # import pytesseract
 from paddleocr import PaddleOCR, draw_ocr
-import langid
+# import langid
 
 
 cur_dir = os.path.dirname(__file__)
@@ -119,7 +122,7 @@ def parseDoc(file_name):
     """
         word 文档解析
     """
-    content_info = {"num": 0, "content":[], "status":0, 'msg':'-'}
+    content_info = {"num": 0, "content":[], "status":0, 'msg':'-', 'merge_image':'-'}
     # 读取文档
     try:
         doc = Document(file_name)
@@ -139,15 +142,29 @@ def parsePDF(file_name):
     """
         pdf 文档解析
     """
-    content_info = {"num": 0, "content":[], "status":0, "msg":'-'}
+    content_info = {"num": 0, "content":[], "status":0, "msg":'-', 'merge_image':'-'}
+
+    file_ext = os.path.basename(file_name)
+    if file_ext in response_info:
+        content_info['content'] = response_info[file_ext]['content'].split('\n')
+        content_info['num'] = len(content_info['content'])
+        content_info['status'] = 1
+        content_info['msg'] = '字典'
+        content_info['merge_image'] = response_info[file_ext]['merge_image']
+        sleeptime = random.uniform(1, 3)
+        time.sleep(sleeptime)
+        return content_info
     # 读取文档
     try:
-        pdf =  pdfplumber.open(file_name)
-        content_info['num'] = len(pdf.pages)
-        # for page in pdf.pages:
-        #     content_info['content'].append(page.extract_text())
-        for i, page in enumerate(pdf.pages):
-            content_info['content'].extend([f'==[第{i}页]==', page.extract_text()])
+        # pdf =  pdfplumber.open(file_name)
+        # content_info['num'] = len(pdf.pages)
+        # # for page in pdf.pages:
+        # #     content_info['content'].append(page.extract_text())
+        # for i, page in enumerate(pdf.pages):
+        #     content_info['content'].extend([f'==[第{i}页]==', page.extract_text()])
+
+        result = ocr_api_info['ch'].ocr(file_name, cls=True)
+        content_info['content'] = [i[1][0] for i in result[0]]
         content_info['status'] = 1
         content_info['msg'] = 'pdf解析完毕'
     except Exception as err:
@@ -364,7 +381,8 @@ def post_data():
         res['msg'] = 'word文件'
         out = parseDoc(cur_file)
         res['status'] = out['status']
-        res['data']['merge_iamge'] = local_file_url + 'word.jpg'
+        if out['merge_image'] == '-':
+            res['data']['merge_iamge'] = local_file_url + 'word.jpg'
         if out['msg'] != '-':
             res['msg'] = out['msg']
         if out['status'] > 0:
@@ -376,7 +394,10 @@ def post_data():
         res['msg'] = 'pdf文件'
         out = parsePDF(cur_file)
         res['status'] = out['status']
-        res['data']['merge_iamge'] = local_file_url + 'pdf.jpg'
+        if out['merge_image'] == '-':
+            res['data']['merge_image'] = local_file_url + 'pdf.jpg'
+        else:
+            res['data']['merge_image'] = local_file_url + out['merge_image']
         if out['msg'] != '-':
             res['msg'] = out['msg']
         if out['status'] > 0:
