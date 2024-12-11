@@ -200,7 +200,7 @@ def parseOCRNew(file_name):
     content_info = {"num": 0, "content":[], "status":0, "msg":'-', "merge_image":'-'}
     # 读取文档
     try:
-        out = ocr.ocr(file_name, cls=True) # 方向分类器
+        out = ocr_api_info['ch'].ocr(file_name, cls=True) # 方向分类器
         # result = ocr.ocr(file_name, det=False) # 每个item只有文本内容和置信度
         # result = ocr.ocr(file_name, cls=True, det=False) # 不需要文本框，每个item只有文本内容和置信度
         # result = ocr.ocr(file_name, cls=True, rec=False) # 不需要文本内容，每个item只有文本框
@@ -359,7 +359,7 @@ def post_data():
                 "merge_image": remote_file, # 融合图
                 "scores":[], # 分值
             }, 
-            'req':{} # 请求信息
+            'req':{'file_name': cur_file} # 请求信息
     }
     
     if not os.path.exists(cur_file):

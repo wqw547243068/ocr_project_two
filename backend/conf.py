@@ -43,11 +43,10 @@ Luftverteidigung, der Seeverteidigung und der landbasierter Kampfkräfte."""
     "all_hand.png": {
         "merge_image": "all_hand_merge.png",
         "content": """[语种]ch
-[得分]0.869832484345687
+[得分]0.8730145410487526
 
-宁可跑起来摔倒无数次，
-也不要规规知知走一辈子，
-就算跌倒也要豪迈地笑。
+以军越过军事缓冲区，坦克向叙利亚首都
+挺近。俄驻叙军事基地处于高度战备状奋
 
 [语种]en
 [得分]0.7894557019074758
