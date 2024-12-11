@@ -1,4 +1,5 @@
 
+font_path = "C:\Windows\Fonts\simfang.ttf"
 
 response_info = {
     "印刷体.pdf": {

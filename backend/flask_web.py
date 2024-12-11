@@ -19,7 +19,7 @@ import socket
 import time
 import random
 from flask import Flask, request, jsonify, render_template, send_file
-from conf import response_info
+from conf import response_info, font_path
 
 app = Flask(__name__)
 
@@ -219,7 +219,7 @@ def parseOCRNew(file_name):
             txts.append(line[1][0])
             scores.append(line[1][1])
 
-        im_show = draw_ocr(image, boxes, txts, scores, font_path='/fonts/simfang.ttf')
+        im_show = draw_ocr(image, boxes, txts, scores, font_path=font_path)
         im_show = Image.fromarray(im_show)
         new_file = os.path.basename(file_name).replace('.', '_merge.')
         remote_file = local_file_url + new_file
@@ -270,7 +270,6 @@ def multiOCR(file_name):
     sort_result = sorted(results, key=lambda x: x[1], reverse=True)
     merge_list = []
     for res in sort_result:
-        print('[debug]', res)
         if res[1] < 0.7:
             continue
         merge_list.extend([f'[语种]{res[0]}', f'[得分]{res[1]}']+[i[1][0] for i in res[2]])
@@ -294,7 +293,7 @@ def multiOCR(file_name):
         txts.append(line[1][0])
         scores.append(line[1][1])
 
-    im_show = draw_ocr(image, boxes, txts, scores, font_path='/fonts/simfang.ttf')
+    im_show = draw_ocr(image, boxes, txts, scores, font_path=font_path)
     im_show = Image.fromarray(im_show)
     new_file = os.path.basename(file_name).replace('.', '_merge.')
     remote_file = local_file_url + new_file
