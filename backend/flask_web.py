@@ -18,7 +18,7 @@ from queue import Queue
 import socket
 import time
 import random
-from flask import Flask, request, jsonify, render_template, send_file
+from flask import Flask, request, send_file
 from conf import response_info, font_path
 
 app = Flask(__name__)
@@ -36,7 +36,7 @@ logger = logging.getLogger(__name__)
 
 from PIL import Image
 from docx import Document
-import pdfplumber
+# import pdfplumber
 # import pytesseract
 from paddleocr import PaddleOCR, draw_ocr
 # import langid
@@ -154,7 +154,7 @@ def parsePDF(file_name):
         #     content_info['content'].extend([f'==[第{i}页]==', page.extract_text()])
 
         result = ocr_api_info['ch'].ocr(file_name, cls=True)
-        content_info['content'] = [i[1][0] for i in result[0]]
+        content_info['content'] = ['识别结果:']+[i[1][0] for i in result[0]]
         content_info['status'] = 1
         content_info['msg'] = 'pdf解析完毕'
     except Exception as err:
