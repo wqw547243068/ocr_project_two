@@ -384,7 +384,7 @@ def post_data():
         res['status'] = 1
         res['msg'] = '字典映射'
         res['data']['merge_image'] = local_file_url + response_info[file_ext]['merge_image']
-        sleeptime = random.uniform(1, 3)
+        sleeptime = random.uniform(1, 2)
         time.sleep(sleeptime)
         return res
     

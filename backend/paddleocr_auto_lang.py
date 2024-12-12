@@ -1,3 +1,4 @@
+# coding:gbk
 
 import langid
 
@@ -21,14 +22,23 @@ import paddleclas
 # file_name = "E:\ocr\data\联合国宣言\中英.jpg"
 # file_name = "E:\ocr\data\联合国宣言\德语.jpg"
 # file_name = "E:\ocr\data\联合国宣言\日语.jpg"
-# file_name = "E:\ocr\data\联合国宣言\法语.jpg"
+file_name = "E:\ocr\data\联合国宣言\法语.jpg"
 # file_name = r"E:\ocr\data\hand\1.jpg"
-file_name = r"E:\ocr\data\hand\3.jpg"
+# file_name = r"E:\ocr\data\hand\3.jpg"
 # file_name = r"E:\ocr\data\OCR_e2e_img\general_ocr_001.png"
+file_name = r"E:\ocr\data\all_hand.png"
+file_name = r"E:\ocr\data\hand.jpg"
+file_name = r"E:\ocr\data\a.png"
+file_name = r"E:\ocr\data\table.jpg"
+file_name = r"E:\ocr\data\all.jpg"
+file_name = r"E:\ocr\data\hand\1.jpg"
+file_name = r"E:\ocr\data\OCR_e2e_img\scan.png"
 
 lang_model = paddleclas.PaddleClas(model_name="language_classification")
 result = lang_model.predict(input_data=file_name)
 result = list(result)
+# result=[[{'class_ids': [2, 4], 'scores': [0.20747, 0.1695], 'label_names': ['cyrillic', 'japan'], 'filename': 'E:\\ocr\\data\\a.png'}]]
+print(f'返回结果 {result=}')
 lang_type = result[0][0]['label_names'][0]
 print('语言类型为：',lang_type)
 
