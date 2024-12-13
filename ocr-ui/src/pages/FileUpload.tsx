@@ -1,6 +1,6 @@
-import { Button, Message, Modal, Radio, Steps } from '@arco-design/web-react';
+import { Button, Message, Modal, Radio, Steps, Image } from '@arco-design/web-react';
 import UploadTpl from '../utils/uploadFile';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 const RadioGroup = Radio.Group
 const Step = Steps.Step;
@@ -12,12 +12,76 @@ export default function FileUpload(props: any) {
   const [imageSrc, setImageSrc] = useState('')
   const [tips, setTips] = useState<any>()
   const [result, setResult] = useState('')
+  const [pdfFile, setPdfFile] = useState(null);  // 存储上传的 PDF 文件
+  const [fileType, setFileType] = useState('');  // 存储上传的 PDF 文件
+  const [pdfDoc, setPdfDoc] = useState(null);    // 存储加载后的 PDF 文档对象
+  const [numPages, setNumPages] = useState(null); // PDF 的总页数
+  const [canvases, setCanvases] = useState([]);   // 存储渲染的 canvas 元素
   const [rawfile, setRawfile] = useState('原始文件/预览图')
   const loc = useLocation()
   const doClick = () => {
     const dom = document.querySelector('.upload-tpl') as any;
     dom.querySelector('input[type="file"]').click()
   }
+
+function getPdf(file: any) {
+    const reader = new FileReader();
+    reader.onload = async function(e: any) {
+      const pdfData = e.target.result;
+      const typedArray = new Uint8Array(e.target.result);
+      // 使用 PDF.js 加载 PDF 文件
+      console.log('pdfcontainer----', document.getElementById('pdfContainer'))
+      pdfjsLib.getDocument(typedArray).promise.then(function _getPdf(pdf:any) {
+        // 获取 PDF 文件的总页数
+        setPdfDoc(pdf);
+        setNumPages(pdf.numPages)
+      });      
+      
+    };
+
+    file && reader.readAsArrayBuffer(file); // 以二进制流的方式读取 PDF 文件
+  }
+
+   // 渲染所有页面
+   useEffect(() => {
+    if (pdfDoc && numPages) {
+      const renderPages = async () => {
+        const newCanvases = [];
+        for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+          const canvas = await renderPage(pageNum);
+          newCanvases.push(canvas);
+        }
+        setCanvases(newCanvases as any);  // 更新 canvases 状态
+      };
+
+      renderPages();  // 渲染所有页面
+    }
+  }, [pdfDoc, numPages]);  // 当 PDF 文档或页数发生变化时触发渲染
+
+  // 渲染页面到 canvas
+  const renderPage = (pageNum: number) => {
+    return new Promise((resolve) => {
+      pdfDoc.getPage(pageNum).then((page: any) => {
+        const viewport = page.getViewport({ scale: 1 });
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        // 渲染页面到 canvas
+        page.render({
+          canvasContext: context,
+          viewport: viewport,
+        }).promise.then(() => {
+          resolve(canvas);  // 渲染完成后返回 canvas
+        });
+      });
+    });
+  };
+  useEffect(() => {
+    getPdf(pdfFile)
+  }, [pdfFile])
 
   useEffect(() => {
     if (loc.pathname === '/revert') {
@@ -71,20 +135,36 @@ export default function FileUpload(props: any) {
     {step === 1 && <div className='upload-area' style={{margin: '30px 0'}}>
       <div><img style={{cursor: 'pointer'}} src="/upload.png" alt="upload" onClick={() => doClick()} /></div>
       <UploadTpl
+        fileCb={(file: any) => {
+          const type = file.type;
+          if (type.includes('image/')) {
+            setFileType('img');
+            // 前端展示上传原始图片
+            // const reader = new FileReader();
+            // reader.onload = function (e: any) {
+            //   setImageSrc(e.target.result);
+              
+            // }
+            // reader.readAsDataURL(file); 
+          } else if (file.type === 'application/pdf') {
+            setFileType('pdf');
+            setPdfFile(file);
+          } 
+        }}
         cback={(status: string, res: any) => {
-          if (status === 'end') { // 上传成功
+          if (status === 'end') {
             setStep(3)
-            if (res.status > 0) { // ocr成功
+            if (res.status > 0) {
               setResult(res.data.content.join('\n'));
               setRawfile(res.req.file_name);
               if (res.data.merge_image) {
                 setImageSrc(res.data.merge_image)
               }
-            } else { // ocr失败
+            } else {
               setResult(res.msg || '识别失败，请检查您的文件后重新上传!');
               setRawfile(res.req.file_name || '原始文件/预览图');
             }
-          } else if (status === 'error'){ // 上传失败
+          } else if (status === 'error'){
             setStep(3)
             setResult('识别失败，请检查您的文件后重新上传!');
             setRawfile('原始文件/预览图');
@@ -99,17 +179,27 @@ export default function FileUpload(props: any) {
     </div>}
     {step === 2 && <div className='upload-area'>
       <div><img style={{cursor: 'pointer'}} src="/pending.png" alt="loading..." /></div>
-      
       <h3>努力识别中，请稍后.....</h3>
     </div>}
     {step === 3 && <div>
       <div style={{display: 'flex', gap: 20}}>
-        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center', overflow: 'hidden'}}>
+        <div id="pdfContainer" style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center', overflow: 'scroll'}}>
           {rawfile}
-          {imageSrc &&  <div style={{height: 500, width: '100%', overflow: 'scroll'}}><img src={imageSrc} ></img></div>}
+          {fileType === 'pdf' && pdfFile ? canvases.map((canvas:any, index) => (
+            <div key={index}>
+              <canvas width={canvas.width} height={canvas.height} ref={(el) => el && (el.replaceWith(canvas))} />
+            </div>
+          )) : ''}
+          {fileType === 'img' && imageSrc &&  <div style={{height: 500, width: '100%', overflow: 'scroll'}}>
+          <Image
+            width={500}
+            height={500}
+            src={imageSrc}
+            alt='原始图片'
+          /></div>}
         </div>
-        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500,  fontSize: '15px', color: '#21618c', overflowY: 'scroll', textAlign:'left'}}>
-          <pre>{result}</pre>
+        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500,  color: '#165dff', overflowY: 'scroll'}}>
+          {result}
         </div>
       </div>
       <div style={{display: 'flex', justifyContent: 'end', marginTop: 10}}>

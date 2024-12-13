@@ -27,6 +27,7 @@ function UploadTpl(props: any) {
       customRequest={(option) => {
         const { onProgress, onError, onSuccess, file } = option as any;
         // const name = file?.name || 'file'
+        props.fileCb(file);
         props.cback()
         const xhr = new XMLHttpRequest()
         xhr.withCredentials = false
