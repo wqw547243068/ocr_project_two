@@ -22,7 +22,7 @@ print(f'当前系统 {sys_name=}, 字体路径 {font_path=}')
 # 快捷回复
 response_info = {
     "印刷体.pdf": {
-        "merge_image":"all_merge.jpg",
+        "merge_image":"all.jpg",
         "content":"""以色列在叙利亚的军事行动
 时间：当地时间2024 年12 月9 日
 事件概述：以色列在叙利亚采取了军事行动，美国国务院发言人马修·米勒在简报会上表示，
