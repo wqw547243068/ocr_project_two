@@ -154,7 +154,10 @@ def parsePDF(file_name):
         #     content_info['content'].extend([f'==[第{i}页]==', page.extract_text()])
 
         result = ocr_api_info['ch'].ocr(file_name, cls=True)
-        content_info['content'] = ['识别结果:']+[i[1][0] for i in result[0]]
+        content_list = ['识别结果:']
+        for idx, res in enumerate(result):
+            content_list.extend([f'\n【第{idx+1}页】']+[i[1][0] for i in res]+['-'*30])
+        content_info['content'] = content_list
         content_info['status'] = 1
         content_info['msg'] = 'pdf解析完毕'
     except Exception as err:
