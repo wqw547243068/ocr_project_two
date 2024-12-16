@@ -112,6 +112,17 @@ npm run dev # 确认页面功能正常
 
 ```
 
+### 问题
+
+【2024-12-16】
+
+操作系统及软件版本旧导致，如： 
+- ① 缺乏vc库，导致paddlepaddle安装失败, `import paddle` 无法执行，找不到libpaddle 
+  - 错误: `Error: Can not import avx core while this file exists`
+  - 解法: 安装[vc_redist.x64](https://blog.csdn.net/fuck_hang/article/details/114578986) 
+- ② 浏览器（IE+Chrome）旧了，导致不支持pdf预览插件，网页白屏
+  - 80.* 版本的chrome无法加载pdf浏览插件 pdf.js, 报语法错误, 导致前端页面白屏
+  - 解法: 升级浏览器
 
 ## 前端
 
