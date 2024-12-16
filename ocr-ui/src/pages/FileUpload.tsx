@@ -155,6 +155,7 @@ function getPdf(file: any) {
           if (status === 'end') {
             setStep(3)
             if (res.status > 0) {
+              console.log(res.data.content);
               setResult(res.data.content.join('\n'));
               setRawfile(res.req.file_name);
               if (res.data.merge_image) {
@@ -190,16 +191,16 @@ function getPdf(file: any) {
               <canvas width={canvas.width} height={canvas.height} ref={(el) => el && (el.replaceWith(canvas))} />
             </div>
           )) : ''}
-          {fileType === 'img' && imageSrc &&  <div style={{height: 500, width: '100%', overflow: 'scroll'}}>
+          {fileType === 'img' && imageSrc &&  <div style={{height: '100%', overflow: 'scroll'}}>
           <Image
-            width={500}
-            height={500}
             src={imageSrc}
             alt='原始图片'
           /></div>}
         </div>
-        <div style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500,  color: '#165dff', overflowY: 'scroll'}}>
-          {result}
+        <div style={{flex: '1 1 50%', border: '1px solid #ccc', textAlign:'left', borderRadius: 4, height: 500,  color: '#165dff', overflowY: 'scroll'}}>
+          
+        <pre>{result}</pre>
+          
         </div>
       </div>
       <div style={{display: 'flex', justifyContent: 'end', marginTop: 10}}>
