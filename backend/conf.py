@@ -60,7 +60,7 @@ zwischen die teilnehmenden Streitkräfte. Besonders hervorgehoben wurden die Fä
 Luftverteidigung, der Seeverteidigung und der landbasierter Kampfkräfte."""
     },
     "all_hand.png": {
-        "merge_image": "all_hand_merge.png",
+        "merge_image": "all_hand.png",
         "content": """[语种]ch
 [得分]0.8730145410487526
 
