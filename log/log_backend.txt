@@ -1,6 +1,0 @@
- * Serving Flask app 'flask_web'
- * Debug mode: on
-windows 系统
-当前系统 sys_name='win32', 字体路径 font_path='C:\\Windows\\Fonts\\simfang.ttf'
- * Serving Flask app 'flask_web'
- * Debug mode: on
