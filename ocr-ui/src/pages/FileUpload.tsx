@@ -64,11 +64,13 @@ const TabPane = Tabs.TabPane;
 const Step3 = (props) => {
   const editorRef = useRef(null);
   const [activeTab, setActiveTab] = useState('1')
+  //  { props.children }
   console.log()
   return (<>
     <Tabs activeTab={activeTab} onChange={(key) => setActiveTab(key)}>
       <TabPane key='1' title='原始文件'>
-        { props.children }
+       ${marked(mdText, { sanitize: true })}
+       
       </TabPane>
       <TabPane key='2' title='在线调试'>
         <UEditorComponent id="ooooo" value={`<div style="text-align: center">${marked(mdText, { sanitize: true })}</div>`} onChange={() => {}} />
