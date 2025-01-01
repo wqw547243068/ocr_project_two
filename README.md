@@ -1,4 +1,4 @@
-# ocr_project
+# ocr_project_two
 
 OCR 项目, 实现多文件类型、多语种的离线OCR检测功能
 
@@ -52,12 +52,58 @@ Web UI
   - 依赖: node.js
 
 
+### 在线部署
+
+现在有网环境，联网部署，再去无网环境使用
+
+环境准备
+- (1) 后端环境
+  - ① Python 安装: 取[网址](https://www.python.org/ftp/python/3.11.1/) 下载对应系统的Python安装包
+    - 如 win 10 系统, 下载 exe 文件, [地址](https://www.python.org/ftp/python/3.11.1/python-3.11.1.exe)
+    - 双击安装，注意：
+      - 勾选 添加环境变量, 否则，需要添加 Python bin 路径到 环境变量 Path 中
+      - 勾选 安装 pip, 否则, 需要手工安装 pip
+  - ② pip 安装：
+    - 如果已安装，略过
+    - 手工安装
+      - 快捷命令: `python -m ensurepip --default-pip`
+      - 或 访问 [https://bootstrap.pypa.io/get-pip.py](https://bootstrap.pypa.io/get-pip.py)，下载 get-pip.py 文件, 当前目录执行 `python get-pip.py`
+- (2) 前端环境
+  - 安装 node.js:
+    - 去[官网](https://nodejs.org/en/download/)选择对应版本, 如 win10 64位安装包 [地址](https://nodejs.org/dist/v22.12.0/node-v22.12.0-x64.msi)
+    - 双击安装
+
+
+
+```sh
+# （1）环境准备
+
+# 获取源码
+git clone https://github.com/wqw547243068/ocr_project_two.git
+
+cd ocr_project_two
+# 安装python依赖包
+pip install -r requirements.txt
+
+# 启动后端服务
+cd backend
+python flask_web.py
+
+# 启动前端服务
+cd ocr-ui
+npm install # 生成 dist 目录
+npm run dev # 确认页面功能正常
+
+```
+
+
+
 ### 离线部署
 
 
 ```sh
 # 后端源码,更新已有文件
-git clone https://github.com/wqw547243068/ocr_project.git
+git clone https://github.com/wqw547243068/ocr_project_two.git
 
 # (1) 后端
 # 准备绿色版python 3.11.1
@@ -65,7 +111,6 @@ wget https://www.python.org/ftp/python/3.11.1/python-3.11.1-embed-amd64.zip
 # 解压后, 添加路径到 系统变量 path 路径
 # 准备 get-pip.py
 访问 https://bootstrap.pypa.io/get-pip.py, 右键另存为 get-pip.py
-
 
 # 准备离线wheel包
 pip download -d ./packs -r requirements.txt
@@ -97,7 +142,7 @@ python get-pip.py
 cd $a
 pip install --no-index --find-links=./packs -r requirements.txt
 
-cd ocr_project
+cd ocr_project_two
 
 # 启动后端服务
 cd backend
