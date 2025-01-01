@@ -87,7 +87,8 @@ pip install -r requirements.txt
 
 # 启动后端服务
 cd backend
-python flask_web.py
+python flask_web_demo.py # demo
+# python flask_web.py # online
 
 # 启动前端服务
 cd ocr-ui
