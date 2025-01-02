@@ -83,8 +83,8 @@ git clone https://github.com/wqw547243068/ocr_project_two.git
 
 cd ocr_project_two
 # 安装python依赖包
-pip install -r requirements.txt
-
+# pip install -r requirements.txt
+pip install Flask # demo
 # 启动后端服务
 cd backend
 python flask_web_demo.py # demo
