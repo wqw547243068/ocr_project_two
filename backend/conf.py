@@ -21,6 +21,32 @@ print(f'当前系统 {sys_name=}, 字体路径 {font_path=}')
 
 # 快捷回复
 response_info = {
+    "222.doc":{
+        "merge_image":"word.jpg",
+        "content": """
+# XX专网文电
+
+
+- 发文单位：联合作战值班室       签发: XXX
+- 发文字号:  联X〔2025〕XX号    密级: 机密
+- 等级: 加急                   类别: 应急救援
+
+
+### 关于XXX的通知
+
+
+XXX：
+      XXXXXX。
+
+                         联合作战值班室
+                     2025年X月X日8时8分   北京
+
+
+- 主题词：    XX  XXX
+- 抄送： 
+- 承办单位：   XXX 联系人：    XXX 电话： XXXXXX
+"""
+    },
     "兵役法.docx":{
         "merge_image":"word.jpg",
         "content":"""
