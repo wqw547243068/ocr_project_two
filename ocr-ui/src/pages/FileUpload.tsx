@@ -13,18 +13,14 @@ const RadioGroup = Radio.Group
 const Step = Steps.Step;
 const TabPane = Tabs.TabPane;
 const Step3 = (props) => {
-  const editorRef = useRef(null);
   const [activeTab, setActiveTab] = useState('1')
-  //  { props.children }
-  console.log()
   return (<>
     <Tabs activeTab={activeTab} onChange={(key) => setActiveTab(key)}>
-      <TabPane key='1' title='原始文件'>
-       ${marked(result, { sanitize: true })}
-       
-      </TabPane>
-      <TabPane key='2' title='在线调试'>
-        <UEditorComponent id="ooooo" value={`<div style="text-align: left">${marked(result, { sanitize: true })}</div>`} onChange={() => {}} />
+      {/* <TabPane key='1' title='原始文件'>
+        <div dangerouslySetInnerHTML={{ __html: marked(props.result, { sanitize: true }) }}></div>
+      </TabPane> */}
+      <TabPane key='1' title='在线调试'>
+        <UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={`<div style="text-align: left">${marked(props.result, { sanitize: true })}</div>`} onChange={() => {}} />
       </TabPane>
     </Tabs>
   </>)
@@ -209,7 +205,7 @@ export default function FileUpload(props: any) {
       <h3>努力识别中，请稍后.....</h3>
     </div>}
     {step === 3 && <div>
-      <Step3>
+      <Step3 result={result}>
         <div id="pdfContainer" style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center', overflow: 'scroll'}}>
           【预览】
           <div dangerouslySetInnerHTML={{ __html: rawfile }}></div>

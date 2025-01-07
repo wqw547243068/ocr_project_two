@@ -12,9 +12,10 @@ const UEditorComponent = ({ id, value, onChange }) => {
         initialFrameHeight: 350,
       });
       setEditorInstance(editor);
+      
       editor.ready(function() {
         bool = true
-        editor.setContent(value,true);
+        editor.setContent(value);
       });
       // 设置初始内容
       // if (value) {
@@ -33,6 +34,7 @@ const UEditorComponent = ({ id, value, onChange }) => {
       // 清理编辑器实例
       return () => {
         if (editorInstance) {
+          console.log(editorInstance)
           editorInstance.destroy();
           setEditorInstance(null);
         }
@@ -42,7 +44,7 @@ const UEditorComponent = ({ id, value, onChange }) => {
 
   useEffect(() => {
     if (editorInstance && value && bool) {
-      console.log(document.getElementById('ooooo'))
+      // console.log(2222)
       editorInstance.setContent(value);
     }
   }, [value, editorInstance]);

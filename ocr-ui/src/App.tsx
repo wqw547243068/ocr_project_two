@@ -1,4 +1,5 @@
 import { Outlet, useNavigate } from 'react-router';
+import { useState } from 'react';
 import './App.css'
 import { Breadcrumb, Layout, Menu } from '@arco-design/web-react';
 import Content from '@arco-design/web-react/es/Layout/content';
@@ -8,6 +9,7 @@ import SubMenu from '@arco-design/web-react/es/Menu/sub-menu';
 const MenuItem = Menu.Item;
 function App() {
   const navigate = useNavigate()
+  const [visible, setVisible] = useState(true)
   const goBack = () => {
     navigate('/')
   }
@@ -30,7 +32,9 @@ function App() {
               defaultSelectedKeys={['0_1']}
               onClickMenuItem={(key: any) =>
                 {
+                  setVisible(false)
                   navigate(key)
+                  setTimeout(() => setVisible(true), 100)
                 }
               }
               style={{ width: '100%', textAlign:'left' }}
@@ -54,7 +58,7 @@ function App() {
                 <MenuItem key='/pdf-to-word'>PDF转Word</MenuItem>
               </SubMenu>
               <SubMenu key='3' title='文档内容助手'>
-                <MenuItem key='/keywords'>关键内容识别</MenuItem>
+                <MenuItem key='/keywords'>文件整编</MenuItem>
                 <MenuItem key='/keywords-remove'>关键内容移除</MenuItem>
                 <MenuItem key='/standard'>标准化</MenuItem>
                 <MenuItem key='/slice'>章节切分</MenuItem>
@@ -71,7 +75,7 @@ function App() {
             </Breadcrumb>
             <Content>
               <div style={{border: '1px solid #e5e6eb', background: '#fff', borderRadius: '8px', padding: '8px'}}>
-                <Outlet />
+                { visible ? <Outlet /> : null }
               </div>
             </Content>
             <Footer style={{minHeight: 50, maxHeight: 50, height: 50, alignContent: 'center', color: 'gray'}}>

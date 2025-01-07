@@ -59,7 +59,7 @@ const data = [
       {
         key: '/keywords',
         icon: '/9.png',
-        text: '关键内容识别',
+        text: '文件整编',
       },
       {
         key: '/keywords-remove',
