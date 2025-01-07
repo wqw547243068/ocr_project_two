@@ -7,20 +7,28 @@ import Markdown from 'react-markdown';
 import {marked} from 'marked';
 
 //const [result, setResult] = useState('')
-// const result = `[null]`
+// const result = `[null]` 
 
 const RadioGroup = Radio.Group
 const Step = Steps.Step;
 const TabPane = Tabs.TabPane;
 const Step3 = (props) => {
   const [activeTab, setActiveTab] = useState('1')
+  const [visible, setVisible] = useState(false)
+
   return (<>
-    <Tabs activeTab={activeTab} onChange={(key) => setActiveTab(key)}>
-      {/* <TabPane key='1' title='原始文件'>
-        <div dangerouslySetInnerHTML={{ __html: marked(props.result, { sanitize: true }) }}></div>
-      </TabPane> */}
-      <TabPane key='1' title='在线调试'>
-        <UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={`<div style="text-align: left">${marked(props.result, { sanitize: true })}</div>`} onChange={() => {}} />
+    <Tabs activeTab={activeTab} onChange={(key) => {
+      setActiveTab(key)
+      setVisible(false)
+      setTimeout(() => setVisible(true), 100)
+    }}>
+      <TabPane key='1' title='原始文件'>
+        <div style={{ textAlign: 'left' }}>
+          <div dangerouslySetInnerHTML={{ __html: marked(props.result, { sanitize: true }) }}></div>
+        </div>
+      </TabPane>
+      <TabPane key='2' title='在线调试'>
+        { visible ? <UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={`<div style="text-align: left">${marked(props.result, { sanitize: true })}</div>`} onChange={() => {}} /> : null }
       </TabPane>
     </Tabs>
   </>)
