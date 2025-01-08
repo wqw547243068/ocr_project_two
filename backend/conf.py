@@ -2,7 +2,7 @@ import sys
 
 # 字体路径
 sys_name = sys.platform
-if sys_name.startswith('win32') or sys_name.startwith('cygwin'):
+if sys_name.startswith('win32') or sys_name.startswith('cygwin'):
     print('windows 系统')
     font_path = "C:\\Windows\\Fonts\\" # win 10 路径
 elif sys_name.startswith('linux'):

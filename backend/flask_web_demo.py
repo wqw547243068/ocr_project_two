@@ -41,7 +41,7 @@ app.config['UPLOAD_FOLDER'] = cache_dir
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 设置最大文件上传大小为 100MB
 
 if not os.path.exists(cache_dir):
-    os.mkdirs(cache_dir)
+    os.makedirs(cache_dir)
 
 
 def extract_ip():
