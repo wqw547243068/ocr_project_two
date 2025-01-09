@@ -20,7 +20,7 @@ const edit_info = `
     <span style="color: #FF0000; text-decoration-line: underline;">发文字号:&nbsp;<span style="color: #000000;">&nbsp;联X〔2025〕XX号&nbsp;</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 密级:&nbsp;<span style="color: #000000;">XXX<span style="color: #FF0000;">&nbsp;</span></span></span>
 </p>
 <p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap; text-align: center;">
-    <span style="color: #FF0000; text-decoration-line: underline;">等&nbsp; &nbsp; 级:&nbsp; &nbsp;&nbsp;<span style="color: #000000;">加急</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类别:&nbsp;<span style="color: #000000;">应急救援</span></span>
+    <span style="color: #FF0000; text-decoration-line: underline;">等&nbsp; &nbsp; 级:&nbsp; &nbsp;&nbsp;<span style="color: #000000;">加急</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 类别:&nbsp;<span style="color: #000000;">应急救援</span></span>
 </p>
 <h3 style="font-family: sans-serif; text-wrap-mode: wrap; text-align: center;">
     <span style="font-size: 24px;">关于XXX的通知</span>
