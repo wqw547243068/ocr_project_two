@@ -9,6 +9,60 @@ import {marked} from 'marked';
 //const [result, setResult] = useState('')
 // const result = `[null]` 
 
+const edit_info = `
+<h1 style="font-family: sans-serif; text-wrap-mode: wrap; text-align: center;">
+    XX专网文电
+</h1>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="color: #FF0000; text-decoration-line: underline;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;发文单位：<span style="color: #000000;">联合作战值班室</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;签发:&nbsp;<span style="color: #000000;">XXX<span style="color: #FF0000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></span></span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="text-decoration-line: underline; color: #FF0000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span style="text-decoration-line: underline;">&nbsp;</span><span style="color: #FF0000; text-decoration-line: underline;">发文字号:&nbsp;<span style="color: #000000;">&nbsp;联X〔2025〕XX号&nbsp;</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 密级:&nbsp;<span style="color: #000000;">XXX<span style="color: #FF0000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></span></span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="color: #FF0000; text-decoration-line: underline;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;等&nbsp; &nbsp; &nbsp; &nbsp;级:&nbsp; &nbsp;&nbsp;<span style="color: #000000;">加急</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 类别:&nbsp;<span style="color: #000000;">应急救援<span style="color: #FF0000;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></span></span>
+</p>
+<h3 style="font-family: sans-serif; text-wrap-mode: wrap; text-align: center;">
+    <span style="font-size: 24px;">关于XXX的通知</span>
+</h3>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="font-size: 20px;">XXX： &nbsp; &nbsp; &nbsp;</span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="font-size: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XXXXXX。</span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="font-size: 20px;"><strong>&nbsp;</strong></span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="font-size: 20px;"><strong><br/></strong></span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="font-size: 20px;">联合作战值班室</span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="font-size: 20px;">2025年X月X日8时8分&nbsp; &nbsp;北京</span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <br/>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <br/>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="text-decoration-line: underline;">主题词： &nbsp; &nbsp;XX &nbsp;XXX&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="text-decoration-line: underline;">抄送：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+</p>
+<p style="margin-bottom: 5px; font-family: sans-serif; font-size: 16px; text-wrap-mode: wrap;">
+    <span style="text-decoration-line: underline;">承办单位： &nbsp; XXX&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;联系人：&nbsp; &nbsp; &nbsp;XXX&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 电话： XXXXXX&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+</p>
+<p>
+    <br/>
+</p>
+`
+
 const RadioGroup = Radio.Group
 const Step = Steps.Step;
 const TabPane = Tabs.TabPane;
@@ -28,7 +82,8 @@ const Step3 = (props) => {
         </div>
       </TabPane>
       <TabPane key='2' title='在线调试'>
-        { visible ? <UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={`<div style="text-align: left">${marked(props.result, { sanitize: true })}</div>`} onChange={() => {}} /> : null }
+        { visible ? <UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={edit_info} onChange={() => {}} /> : null }
+        {/*{ visible ? <UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={`<div style="text-align: left">${marked(props.result, { sanitize: true })}</div>`} onChange={() => {}} /> : null }*/}
       </TabPane>
     </Tabs>
   </>)
