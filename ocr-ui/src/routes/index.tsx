@@ -1,3 +1,13 @@
+/*
+ * @Author: weijingjing 1838352147@qq.com
+ * @Date: 2025-01-09 20:55:30
+ * @LastEditors: weijingjing 1838352147@qq.com
+ * @LastEditTime: 2025-01-09 21:00:12
+ * @FilePath: /ocr-project/ocr_project_two/ocr-ui/src/routes/index.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -50,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/keywords',
-        element: <FileUpload title="关键内容识别" />,
+        element: <FileUpload title="文件整编" />,
       },
       {
         path: '/keywords-remove',

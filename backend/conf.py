@@ -21,7 +21,7 @@ print(f'当前系统 {sys_name=}, 字体路径 {font_path=}')
 
 # 快捷回复
 response_info = {
-    "222.doc":{
+    "1号文件.docx":{
         "merge_image":"word.jpg",
         "content": """
 # XX专网文电

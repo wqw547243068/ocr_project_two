@@ -68,27 +68,43 @@ const Step = Steps.Step;
 const TabPane = Tabs.TabPane;
 const Step3 = (props) => {
   const [activeTab, setActiveTab] = useState('1')
-  const [visible, setVisible] = useState(false)
-
+  console.log(props.title,">>.title3455")
   return (<>
     <Tabs activeTab={activeTab} onChange={(key) => {
       setActiveTab(key)
-      setVisible(false)
-      setTimeout(() => setVisible(true), 100)
     }}>
-{/*      <TabPane key='1' title='原始文件'>
+    {props.title=='版面分析'?<TabPane key='1' title='原始文件'>
         <div style={{ textAlign: 'left' }}>
           <div dangerouslySetInnerHTML={{ __html: marked(props.result, { sanitize: true }) }}></div>
         </div>
-      </TabPane>*/}
-      <TabPane key='2' title='在线整编'>
-        { visible ? <UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={edit_info} onChange={() => {}} /> : null }
-        {/*{ visible ? <UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={`<div style="text-align: left">${marked(props.result, { sanitize: true })}</div>`} onChange={() => {}} /> : null }*/}
-      </TabPane>
+      </TabPane>:null}
+      {props.title=='版面分析'?<TabPane key='2' title='在线调试'>
+      {activeTab=='2'?<UEditorComponent
+              id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`}
+              value={`<div style="text-align: left">${marked(props.result, {
+                sanitize: true,
+              })}</div>`}
+              onChange={() => {}}
+            />:null}
+            </TabPane>:null}
+      {props.title=='文件整编'?
+      <TabPane key='1' title='在线整编'>
+      {<UEditorComponent id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`} value={edit_info} onChange={() => {}} />}
+    </TabPane>:null}
+    {!['版面分析', '文件整编'].includes(props.title)?<TabPane key='1' title='在线调试'>
+    <UEditorComponent
+              id={`ee${Math.floor(Math.random() * (100000000 - 1 + 1))}`}
+              value={`<div style="text-align: left">${marked(props.result, {
+                sanitize: true,
+              })}</div>`}
+              onChange={() => {}}
+            />:
+    </TabPane>:null}
     </Tabs>
   </>)
 }
 
+ 
 
 export default function FileUpload(props: any) {
   const [step, setStep] = useState(1)
@@ -268,7 +284,7 @@ export default function FileUpload(props: any) {
       <h3>努力识别中，请稍后.....</h3>
     </div>}
     {step === 3 && <div>
-      <Step3 result={result}>
+      <Step3 result={result} title={props.title}>
         <div id="pdfContainer" style={{flex: '1 1 50%', border: '1px solid #ccc', borderRadius: 4, height: 500, alignContent: 'center', overflow: 'scroll'}}>
           【预览】
           <div dangerouslySetInnerHTML={{ __html: rawfile }}></div>
